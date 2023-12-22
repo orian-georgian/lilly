@@ -1,0 +1,9 @@
+.lilly-sidebar {
+  .lilly-nav-link {
+    border-left: 3px solid var(--mantine-color-lilly-red-7);
+  }
+
+  &__user-section {
+    border-top: 0.8px solid var(--mantine-color-lilly-red-1);
+  }
+}
