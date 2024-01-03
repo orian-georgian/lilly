@@ -5,6 +5,7 @@ import {
   Badge,
   Alert,
   Table,
+  Title,
 } from "@mantine/core";
 
 const lillyRed = [
@@ -103,6 +104,13 @@ const mantineTheme = createTheme({
       styles: {
         th: {
           fontWeight: "500",
+        },
+      },
+    }),
+    Title: Title.extend({
+      styles: {
+        root: {
+          color: `var(--mantine-color-primary-dark-9)`,
         },
       },
     }),

@@ -9,3 +9,4 @@ export { WarningsWidget } from "./WarningsWidget";
 export { PatientDashboard } from "./PatientDashboard";
 export { HCPDashboard } from "./HCPDashboard";
 export { LineChartWidget } from "./LineChartWidget";
+export { PatientProfile } from "./PatientProfile";
