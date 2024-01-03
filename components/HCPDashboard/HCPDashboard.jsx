@@ -83,7 +83,7 @@ export default function HCPDashboard() {
         <HCPPatientsWidget />
       </Grid.Col>
       {chartsData?.map(({ title, labels, datasets }) => (
-        <Grid.Col span={{ base: 12, md: 4, lg: 4 }}>
+        <Grid.Col key={title} span={{ base: 12, md: 4, lg: 4 }}>
           <LineChartWidget title={title} labels={labels} datasets={datasets} />
         </Grid.Col>
       ))}
