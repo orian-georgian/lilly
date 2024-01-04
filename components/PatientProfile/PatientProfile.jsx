@@ -1,171 +1,140 @@
-import { Flex, Grid, Text, Button, Modal, Divider } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { Flex, Title, Button, Divider, Grid, Text } from "@mantine/core";
 import {
   MdOutlineMuseum,
   MdOutlineLocationOn,
-  MdOutlineInfo,
+  MdInfoOutline,
   MdOutlineFolderShared,
   MdOutlineSupervisorAccount,
 } from "react-icons/md";
-import PatientProfileData from "@lilly/constants/patient-profile-data";
 
-const patientProfileData = {
-  demographicData: {
-    Icon: MdOutlineMuseum,
-    data: {
-      email: "test@test.com",
-      nationality: "Indian",
-      language: "Hindi",
-      dateOfBirth: "21/06/1995",
-      gender: "Male",
-      weight: "75 kg",
-      height: "185 cm",
-      bmi: "26.7",
-      primaryEmployment: "Yes",
-      educationStatus: "University Education",
-      smokingStatus: "Former Smoker",
-      diagnosisDate: "27/12/2023",
-    },
-  },
-  studyData: {
-    Icon: MdOutlineLocationOn,
-    data: {
-      study: "Study Name",
-      disease: "axSpa",
-      treatmentPrescribesDate: "27/12/2023",
-      country: "United Kingdom",
-    },
-  },
-  medicationHistory: {
-    Icon: MdOutlineInfo,
-    data: {
-      btsDMARDUsed: "Apremilast (Otezia)",
-      csDMARDUsed: "methotrexate (Rheumatrex, Trexall, other)",
-    },
-  },
-  baselineMedication: {
-    Icon: MdOutlineFolderShared,
-    data: {
-      btsDMARDBaseline: "Ixekizumab (PsA, axSpA)",
-      csDMARDBaseline: "answer",
-      corticosteroidBaseline: "Corticosteroid at baseline",
-    },
-  },
-  wellnessData: {
-    Icon: MdOutlineSupervisorAccount,
-    data: {
-      walking: "Yes",
-      stretching: "No",
-      flowingMovements: "No",
-      workingOutInWater: "Yes",
-      cycling: "No",
-      strengthTraining: "Yes",
-      handExercise: "Yes",
-      dietary: "High Intake",
-      sleepTrouble: "No",
-      nightWakeUp: "Several times per week",
-      troubleStayingSleep: "Several times per week",
-      feelingTired: "Several times per week",
-    },
-  },
-};
+const SectionTitle = ({ title, icon: Icon }) => (
+  <Grid.Col span={12}>
+    <Flex gap="xs" align="center">
+      <Icon size={24} />
+      <Text fw={500} lh={2.4}>
+        {title}
+      </Text>
+    </Flex>
+  </Grid.Col>
+);
+
+const SectionItem = ({ label, value }) => (
+  <Grid.Col span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+    <Flex direction="column">
+      <Text c="dimmed" size="xs">
+        {label}
+      </Text>
+      <Text size="sm" fw={500} lh={2.4}>
+        {value}
+      </Text>
+    </Flex>
+  </Grid.Col>
+);
 
 export default function PatientProfile() {
-  const [opened, { close, open }] = useDisclosure();
-
-  const dataEntries = Object.entries(patientProfileData);
-
   return (
-    <Grid className="lilly-patientProfile w-100" gutter={20}>
-      <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-        <Flex
-          direction="row"
-          justify="space-between"
-          align="center"
-          wrap="wrap"
-          gap={10}
-        >
-          <Text fw={700} fz={32}>
-            User ID
-          </Text>
-          <Flex direction="row" gap={10} align="center" wrap="wrap">
-            <Button variant="outline">Change Password</Button>
-            <Button variant="filled" onClick={open}>
-              Request to Cancel Authorization
-            </Button>
-            <Modal
-              opened={opened}
-              onClose={close}
-              centered
-              title="Request to Cancel Authorization"
-              styles={{
-                root: {
-                  padding: 20,
-                },
-                title: {
-                  fontWeight: 700,
-                  fontSize: 30,
-                },
-              }}
-            >
-              <Flex direction="column" gap={10}>
-                <div className="modal-divider" />
-                <Text>
-                  Are you sure you want to cancel your authorization to use your
-                  data in this study? This will also mean your profile becomes
-                  inactive.
-                </Text>
-                <div className="modal-divider" />
-                <Flex direction="row" gap={10} justify="space-between">
-                  <Button variant="outline" onClick={close}>
-                    Cancel
-                  </Button>
-                  <Button variant="filled">Confirm</Button>
-                </Flex>
-              </Flex>
-            </Modal>
-          </Flex>
-        </Flex>
-      </Grid.Col>
-      <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-        <Grid gutter={27} className="lilly-patientProfile__content-section">
-          {dataEntries.map(([key, { Icon, data }], index) => (
-            <>
-              <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-                <Flex direction="row" gap={5}>
-                  <Icon size={24} />
-                  <Text fw={500} fz={16}>
-                    {
-                      PatientProfileData.List.find(
-                        (pData) => pData.value === key
-                      )?.label
-                    }
-                  </Text>
-                </Flex>
-              </Grid.Col>
-              {Object.entries(data).map(([key, value]) => (
-                <Grid.Col span={{ base: 4, md: 4, lg: 3 }}>
-                  <Text className="lilly-patientProfile__data-label">
-                    {
-                      PatientProfileData.List.find(
-                        (pData) => pData.value === key
-                      )?.label
-                    }
-                  </Text>
-                  <Text className="lilly-patientProfile__data-value">
-                    {value}
-                  </Text>
-                </Grid.Col>
-              ))}
-              {index !== dataEntries?.length - 1 && (
-                <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-                  <div className="lilly-patientProfile__data-divider" />
-                </Grid.Col>
-              )}
-            </>
-          ))}
-        </Grid>
-      </Grid.Col>
-    </Grid>
+    <Flex className="w-100" direction="column" gap="lg">
+      <Flex className="w-100" align="center" gap="sm">
+        <Title order={4} size="32px">
+          User ID
+        </Title>
+        <Button className="m-l-auto" variant="outline" color="lilly-red">
+          Change Password
+        </Button>
+        <Button variant="filled" color="lilly-red">
+          Request to Cancel Authorization
+        </Button>
+      </Flex>
+      <Grid
+        p="lg"
+        styles={{
+          root: {
+            border: "0.8px solid var(--mantine-color-primary-dark-1)",
+            borderRadius: "8px",
+          },
+        }}
+      >
+        <SectionTitle title="Demographic Data" icon={MdOutlineMuseum} />
+
+        <SectionItem label="E-Mail Address" value="mail@address.be" />
+        <SectionItem label="Nationality" value="American" />
+        <SectionItem label="Language" value="English" />
+        <SectionItem label="Date of Birth" value="01/01/1990" />
+
+        <SectionItem label="Gender" value="Male" />
+        <SectionItem label="Weigth" value="80 kg" />
+        <SectionItem label="Height" value="185 cm" />
+        <SectionItem label="BMI" value="26.7" />
+
+        <SectionItem label="Primary Employment" value="Yes" />
+        <SectionItem label="Education Status" value="University Education" />
+        <SectionItem label="Smoking Status" value="Former Smoker" />
+        <SectionItem label="Disease Diagnosis Date" value="23/11/2023" />
+
+        <Divider w="100%" my="xl" />
+
+        <SectionTitle title="Study Data" icon={MdOutlineLocationOn} />
+
+        <SectionItem label="Study" value="Study Name" />
+        <SectionItem label="Disease" value="axSpA" />
+        <SectionItem label="Treatment Prescribes Date" value="23/11/2023" />
+        <SectionItem label="Country/Region/Site" value="United Kingdom" />
+
+        <Divider w="100%" my="xl" />
+
+        <SectionTitle title="Medication History" icon={MdInfoOutline} />
+
+        <SectionItem
+          label="b/tsDMARD previously used"
+          value="Apremilast (Otezia)"
+        />
+        <SectionItem
+          label="csDMARD previously used"
+          value="methotrexate (Rheumatrex, Trexall, other)"
+        />
+
+        <Divider w="100%" my="xl" />
+
+        <SectionTitle
+          title="Baseline Medication"
+          icon={MdOutlineFolderShared}
+        />
+
+        <SectionItem
+          label="b/tsDMARD at baseline"
+          value="Ixekizumab (PsA, axSpA)"
+        />
+        <SectionItem label="csDMARD at baseline" value="answer" />
+        <SectionItem label="Corticosteroid at baseline" value="Dexamethasone" />
+
+        <Divider w="100%" my="xl" />
+
+        <SectionTitle title="Wellness Data" icon={MdOutlineSupervisorAccount} />
+
+        <SectionItem label="Walking" value="Yes" />
+        <SectionItem label="Stretching" value="No" />
+        <SectionItem label="Flowing Movements" value="No" />
+        <SectionItem label="Working out in water" value="Yes" />
+
+        <SectionItem label="Cycling" value="No" />
+        <SectionItem label="Strength Training" value="Yes" />
+        <SectionItem label="Hand Exercises" value="Yes" />
+        <SectionItem label="Dietary" value="High Intake" />
+
+        <SectionItem label="Have trouble falling asleep?" value="No" />
+        <SectionItem
+          label="Wake up several times per night?"
+          value="Several times per week"
+        />
+        <SectionItem
+          label="Have trouble staying asleep (including waking far away too early)?"
+          value="Several times per week"
+        />
+        <SectionItem
+          label="Wake up after your usual amount of sleep feeling tired and worn out?"
+          value="Several times per week"
+        />
+      </Grid>
+    </Flex>
   );
 }

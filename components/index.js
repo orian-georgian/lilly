@@ -13,3 +13,7 @@ export { PatientProfile } from "./PatientProfile";
 export { HCPNewPatientWidget } from "./HCPNewPatientWidget";
 export { MultiStepFormModalWidget } from "./MultiStepFormModalWidget";
 export { FormWrapperWidget } from "./FormWrapperWidget";
+export { DrawerForm } from "./DrawerForm";
+export { MultiStepsForm } from "./MultiStepsForm";
+export { AddNewVisitDataStep } from "./AddNewVisitDataStep";
+export { AddNewVisitQuestionnairesStep } from "./AddNewVisitQuestionnairesStep";
