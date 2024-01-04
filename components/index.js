@@ -10,3 +10,7 @@ export { PatientDashboard } from "./PatientDashboard";
 export { HCPDashboard } from "./HCPDashboard";
 export { LineChartWidget } from "./LineChartWidget";
 export { PatientProfile } from "./PatientProfile";
+export { DrawerForm } from "./DrawerForm";
+export { MultiStepsForm } from "./MultiStepsForm";
+export { AddNewVisitDataStep } from "./AddNewVisitDataStep";
+export { AddNewVisitQuestionnairesStep } from "./AddNewVisitQuestionnairesStep";

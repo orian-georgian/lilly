@@ -21,7 +21,26 @@ import {
   getColorByPatientDataStatus,
   getColorByPatientStatus,
 } from "@lilly/utils";
+
+import { addVisitValidators } from "@lilly/utils/form-validators";
 import { PatientDataStatuses, PatientStatuses } from "@lilly/constants";
+import {
+  DrawerForm,
+  MultiStepsForm,
+  AddNewVisitDataStep,
+  AddNewVisitQuestionnairesStep,
+} from "@lilly/components";
+
+import { useRef } from "react";
+
+const initialNewVisitFormValues = {
+  visitDate: new Date(),
+  visitType: null,
+  assessmentDate: null,
+  entryDate: null,
+  baselineTreatment: "",
+  whyNot: "",
+};
 
 export default function HCPPatientsWidget() {
   const {
@@ -32,9 +51,23 @@ export default function HCPPatientsWidget() {
     filterPatients,
   } = useHCPDashboard();
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const drawerFormRef = useRef(null);
+  const newVisitFormSteps = [
+    AddNewVisitDataStep,
+    AddNewVisitQuestionnairesStep,
+  ];
 
   const handleChangeSelection = (patientId) => () => {
     setSelectedPatientId(patientId);
+  };
+
+  const handleAddNewVisit = (e) => {
+    e.stopPropagation();
+    drawerFormRef.current?.open();
+  };
+
+  const handleAddNewVisitCancel = () => {
+    drawerFormRef.current?.close();
   };
 
   const rows = patients.map(
@@ -128,7 +161,7 @@ export default function HCPPatientsWidget() {
           </UnstyledButton>
         </Table.Td>
         <Table.Td w={45} align="center">
-          <UnstyledButton>
+          <UnstyledButton onClick={handleAddNewVisit}>
             <LiaClipboardCheckSolid
               size={20}
               color={`var(--mantine-color-lilly-red-7)`}
@@ -164,7 +197,7 @@ export default function HCPPatientsWidget() {
           Add New Patient
         </Button>
       </Flex>
-      <Divider my="xs" color={`var(--mantine-color-red-2)`} />
+      <Divider my="xs" color="var(--mantine-color-red-2)" />
       <Table.ScrollContainer h={200}>
         <Table>
           <Table.Thead>
@@ -191,6 +224,17 @@ export default function HCPPatientsWidget() {
           <Table.Tbody>{rows.length > 0 ? rows : noData}</Table.Tbody>
         </Table>
       </Table.ScrollContainer>
+      <DrawerForm ref={drawerFormRef} title="Add a new visit">
+        <MultiStepsForm
+          totalSteps={newVisitFormSteps.length}
+          startFrom={1}
+          submitText="Add visit"
+          formValues={initialNewVisitFormValues}
+          formValidators={addVisitValidators}
+          steps={newVisitFormSteps}
+          onCancel={handleAddNewVisitCancel}
+        />
+      </DrawerForm>
     </Paper>
   );
 }

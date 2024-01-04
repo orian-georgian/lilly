@@ -6,6 +6,7 @@ import {
   Alert,
   Table,
   Title,
+  Drawer,
 } from "@mantine/core";
 
 const lillyRed = [
@@ -64,6 +65,17 @@ const mantineTheme = createTheme({
       styles: {
         navbar: {
           borderColor: "var(--mantine-color-lilly-red-light)",
+        },
+      },
+    }),
+    Drawer: Drawer.extend({
+      styles: {
+        header: {
+          padding: "30px 40px",
+        },
+        title: {
+          fontSize: 32,
+          fontWeight: 700,
         },
       },
     }),
