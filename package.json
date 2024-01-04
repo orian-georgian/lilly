@@ -11,6 +11,8 @@
     "@mantine/form": "^7.4.0",
     "@mantine/hooks": "^7.3.2",
     "chart.js": "^4.4.1",
+    "clsx": "^2.1.0",
+    "mantine-datatable": "^7.3.5",
     "next": "latest",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
