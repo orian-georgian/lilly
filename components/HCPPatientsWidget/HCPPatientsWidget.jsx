@@ -22,6 +22,7 @@ import {
   getColorByPatientStatus,
 } from "@lilly/utils";
 import { PatientDataStatuses, PatientStatuses } from "@lilly/constants";
+import { HCPNewPatientWidget } from "../HCPNewPatientWidget";
 
 export default function HCPPatientsWidget() {
   const {
@@ -160,9 +161,7 @@ export default function HCPPatientsWidget() {
           leftSection={<IoIosSearch size={20} />}
           onChange={filterPatients}
         />
-        <Button fullWidth={isMobile} variant="outline">
-          Add New Patient
-        </Button>
+        <HCPNewPatientWidget {...{ isMobile }} />
       </Flex>
       <Divider my="xs" color={`var(--mantine-color-red-2)`} />
       <Table.ScrollContainer h={200}>

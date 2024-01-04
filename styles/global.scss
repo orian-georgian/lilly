@@ -1,4 +1,7 @@
 @import "@lilly/styles/SideBar.scss";
+@import "@lilly/styles/PatientProfile.scss";
+@import "@lilly/styles/SegmentedControl.scss";
+@import "@mantine/dates/styles.css";
 
 @font-face {
   font-family: "Roboto";
@@ -54,4 +57,12 @@ img {
   .hidden-on-mobile {
     display: none;
   }
+}
+
+.modal-divider {
+  border: 0.82px solid var(--mantine-color-lilly-red-11);
+}
+
+.mantine-InputWrapper-label {
+  font-weight: 400;
 }
