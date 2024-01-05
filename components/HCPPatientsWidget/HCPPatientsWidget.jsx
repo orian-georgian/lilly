@@ -23,8 +23,11 @@ import {
 } from "@lilly/utils";
 
 import { addVisitValidators } from "@lilly/utils/form-validators";
-import { PatientDataStatuses, PatientStatuses } from "@lilly/constants";
-import { HCPNewPatientWidget } from "../HCPNewPatientWidget";
+import {
+  PatientDataStatuses,
+  PatientStatuses,
+  DiseaseActivities,
+} from "@lilly/constants";
 
 import {
   DrawerForm,
@@ -34,6 +37,15 @@ import {
 } from "@lilly/components";
 
 import { useRef } from "react";
+import { PatientStudyDataStep } from "../PatientStudyDataStep";
+import { PatientDemographicDataFirstStep } from "../PatientDemographicDataFirstStep";
+import { PatientDemographicDataSecondStep } from "../PatientDemographicDataSecondStep";
+import { PatientMedicationHistoryStep } from "../PatientMedicationHistoryStep";
+import { PatientBaselineMedicationStep } from "../PatientBaselineMedicationStep";
+import { PatientCDAIStep } from "../PatientCDAIStep";
+import { PatientDAPSAStep } from "../PatientDAPSAStep";
+import { PatientWellnessDataStep } from "../PatientWellnessDataStep";
+import { PatientSleepDisturbanceStep } from "../PatientSleepDisturbanceStep";
 
 const initialNewVisitFormValues = {
   step1: {
@@ -67,48 +79,62 @@ const initialNewVisitFormValues = {
 };
 
 const initialNewPatientFormValues = {
-  study: null,
-  country: null,
-  disease: null,
-  visitedAt: new Date(),
-  prescribedAt: null,
-  id: "1111",
-  email: "",
-  nationality: "",
-  language: "",
-  dob: null,
-  age: "",
-  weight: "",
-  weightUnit: "kg",
-  height: "",
-  heightUnit: "cm",
-  bmi: "",
-  bmiCategory: "",
-  sex: "",
-  primaryEmployment: "",
-  educationStatus: "",
-  smokingStatus: "",
-  diagnosisDate: null,
-  diseaseEvolution: "",
-  csDMARDUsed: [],
-  btsDMARDUsed: [{ treatment: [], start: null, end: null }],
-  csDMARDBaseline: [],
-  corticosteroidBaseline: [],
-  btsDMARDBaseline: [{ treatment: [], start: null, end: null }],
-  cdai: {
-    tenderJointCount: 0,
-    swollenJointCount: 0,
-    globalPatient: 0,
-    globalHCP: 0,
+  step1: {
+    study: null,
+    country: null,
+    disease: null,
+    visitedAt: new Date(),
+    prescribedAt: null,
   },
-  dapsa: {
-    tenderJointCount: 0,
-    swollenJointCount: 0,
-    patientPain: 0,
-    globalPatient: 0,
-    globalEvaluator: 0,
+  step2: {
+    id: "1111",
+    email: "",
+    nationality: null,
+    language: null,
+    dob: null,
+    age: "",
+    weight: "",
+    weightUnit: "kg",
+    height: "",
+    heightUnit: "cm",
+    bmi: "",
+    bmiCategory: "",
   },
-  exercise: {
+  step3: {
+    sex: "",
+    primaryEmployment: "",
+    educationStatus: "",
+    smokingStatus: "",
+    diagnosisDate: null,
+    diseaseEvolution: "",
+  },
+  step4: {
+    csDMARDUsed: [],
+    btsDMARDUsed: [{ treatment: [], start: null, end: null }],
+  },
+  step5: {
+    csDMARDBaseline: [],
+    corticosteroidBaseline: [],
+    btsDMARDBaseline: [{ treatment: [], start: null, end: null }],
+  },
+  step6: {
+    cdai: [
+      { id: DiseaseActivities.Enum.TenderJointCount, score: 0 },
+      { id: DiseaseActivities.Enum.SwollenJointCount, score: 0 },
+      { id: DiseaseActivities.Enum.PatientGlobal, score: 0 },
+      { id: DiseaseActivities.Enum.HcpGlobal, score: 0 },
+    ],
+  },
+  step7: {
+    dapsa: [
+      { id: DiseaseActivities.Enum.TenderJointCount, score: 0 },
+      { id: DiseaseActivities.Enum.SwollenJointCount, score: 0 },
+      { id: DiseaseActivities.Enum.PatientPainVas, score: 0 },
+      { id: DiseaseActivities.Enum.PatientGlobalDiseaseVas, score: 0 },
+      { id: DiseaseActivities.Enum.EvaluatorGlobalDiseaseVas, score: 0 },
+    ],
+  },
+  step8: {
     walking: "",
     stretching: "",
     flowingMovements: "",
@@ -118,10 +144,12 @@ const initialNewPatientFormValues = {
     handExercise: "",
     dietaryIntake: "",
   },
-  sleepTrouble: "",
-  nightWakeUp: "",
-  troubleStayingSleep: "",
-  feelingTired: "",
+  step9: {
+    sleepTrouble: "",
+    nightWakeUp: "",
+    troubleStayingSleep: "",
+    feelingTired: "",
+  },
 };
 
 export default function HCPPatientsWidget() {
@@ -144,8 +172,15 @@ export default function HCPPatientsWidget() {
   ];
 
   const newPatientFormSteps = [
-    AddNewVisitDataStep,
-    AddNewVisitQuestionnairesStep,
+    PatientStudyDataStep,
+    PatientDemographicDataFirstStep,
+    PatientDemographicDataSecondStep,
+    PatientMedicationHistoryStep,
+    PatientBaselineMedicationStep,
+    PatientCDAIStep,
+    PatientDAPSAStep,
+    PatientWellnessDataStep,
+    PatientSleepDisturbanceStep,
   ];
 
   const handleChangeSelection = (patientId) => () => {
@@ -305,7 +340,6 @@ export default function HCPPatientsWidget() {
         >
           Add New Patient
         </Button>
-        <HCPNewPatientWidget {...{ isMobile }} />
       </Flex>
       <Divider my="xs" color="var(--mantine-color-red-2)" />
       <Table.ScrollContainer h={200}>

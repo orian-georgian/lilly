@@ -1,24 +1,38 @@
 import {
-  TextInput,
-  rem,
+  Flex,
   Grid,
   NumberInput,
   SegmentedControl,
+  Select,
+  Text,
+  TextInput,
 } from "@mantine/core";
-import { FormWrapperWidget } from "../FormWrapperWidget";
+import { FunctionComponent, useEffect } from "react";
 import { DatePickerInput } from "@mantine/dates";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-import calculateAge from "@lilly/utils/calculateAge";
-import calculateBMI from "@lilly/utils/calculateBMI";
-import { useEffect } from "react";
-import { Null } from "./HCPNewPatientWidget";
+import { UseFormReturnType } from "@mantine/form";
+import { calculateBMI, calculateAge } from "@lilly/utils";
 import { Units, Countries } from "@lilly/constants";
-import { SelectWidget } from "../SelectWidget";
 
-export default function DemographicDataOne({ form }) {
-  const { dob, weight, weightUnit, height, heightUnit } = form.values;
+interface PatientDemographicDataFirstStepProps {
+  form: UseFormReturnType<any>;
+}
 
-  useEffect(() => form.setValues({ age: dob ? calculateAge(dob) : "" }), [dob]);
+export const Null = () => null;
+
+const PatientDemographicDataFirstStep: FunctionComponent<
+  PatientDemographicDataFirstStepProps
+> = ({ form }) => {
+  console.log(form.values.step2);
+  const { dob, weight, weightUnit, height, heightUnit } = form.values.step2;
+
+  useEffect(
+    () =>
+      form.setValues({
+        step2: { ...form.values.step2, age: dob ? calculateAge(dob) : "" },
+      }),
+    [dob]
+  );
 
   useEffect(() => {
     const { bmi, bmiCategory } = calculateBMI(
@@ -28,33 +42,36 @@ export default function DemographicDataOne({ form }) {
       heightUnit
     );
 
-    form.setValues({ bmi, bmiCategory });
+    form.setValues({ step2: { ...form.values.step2, bmi, bmiCategory } });
   }, [weight, weightUnit, height, heightUnit]);
 
   return (
-    <FormWrapperWidget title="Demographic Data - Part 1/2">
+    <Flex direction="column" gap="lg">
+      <Text fw={500}>Demographic Data - Part 1/2</Text>
       <TextInput
         label="ID"
         placeholder="id"
-        {...form.getInputProps("id")}
+        {...form.getInputProps("step2.id")}
         disabled
       />
       <TextInput
         label="E-Mail Address"
         placeholder="Fill in the e-mail address"
-        {...form.getInputProps("email")}
+        {...form.getInputProps("step2.email")}
       />
-      <SelectWidget
+      <Select
         label="Nationality"
         placeholder="Select a nationality"
         data={Countries.Nationality}
-        {...form.getInputProps("nationality")}
+        clearable
+        {...form.getInputProps("step2.nationality")}
       />
-      <SelectWidget
+      <Select
         label="Language"
         placeholder="Select a language"
         data={Countries.Language}
-        {...form.getInputProps("language")}
+        clearable
+        {...form.getInputProps("step2.language")}
       />
       <Grid>
         <Grid.Col span={{ base: 12, md: 9, lg: 9 }}>
@@ -63,19 +80,17 @@ export default function DemographicDataOne({ form }) {
             placeholder="Select a date"
             valueFormat="DD/MM/YYYY"
             clearable
-            leftSection={
-              <MdOutlineCalendarMonth height={rem(20)} width={rem(20)} />
-            }
+            leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
             leftSectionPointerEvents="none"
             maxDate={new Date()}
-            {...form.getInputProps("dob")}
+            {...form.getInputProps("step2.dob")}
           />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3, lg: 3 }}>
           <NumberInput
             label="Age"
             disabled
-            {...form.getInputProps("age")}
+            {...form.getInputProps("step2.age")}
             rightSection={<Null />}
           />
         </Grid.Col>
@@ -83,7 +98,7 @@ export default function DemographicDataOne({ form }) {
       <NumberInput
         label="Weight"
         placeholder="weight"
-        {...form.getInputProps("weight")}
+        {...form.getInputProps("step2.weight")}
         styles={{ section: { width: "auto", right: 0 } }}
         rightSection={
           <SegmentedControl
@@ -91,14 +106,14 @@ export default function DemographicDataOne({ form }) {
             color={`var(--mantine-color-lilly-red-7)`}
             bg="white"
             data={Units.Weight}
-            {...form.getInputProps("weightUnit")}
+            {...form.getInputProps("step2.weightUnit")}
           />
         }
       />
       <NumberInput
         label="Height"
         placeholder="height"
-        {...form.getInputProps("height")}
+        {...form.getInputProps("step2.height")}
         styles={{ section: { width: "auto", right: 0 } }}
         rightSection={
           <SegmentedControl
@@ -106,7 +121,7 @@ export default function DemographicDataOne({ form }) {
             color={`var(--mantine-color-lilly-red-7)`}
             bg="white"
             data={Units.Height}
-            {...form.getInputProps("heightUnit")}
+            {...form.getInputProps("step2.heightUnit")}
           />
         }
       />
@@ -115,18 +130,20 @@ export default function DemographicDataOne({ form }) {
           <NumberInput
             label="BMI"
             disabled
-            {...form.getInputProps("bmi")}
+            {...form.getInputProps("step2.bmi")}
             rightSection={<Null />}
           />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 9, lg: 9 }}>
           <TextInput
             label="BMI Category"
-            {...form.getInputProps("bmiCategory")}
+            {...form.getInputProps("step2.bmiCategory")}
             disabled
           />
         </Grid.Col>
       </Grid>
-    </FormWrapperWidget>
+    </Flex>
   );
-}
+};
+
+export default PatientDemographicDataFirstStep;

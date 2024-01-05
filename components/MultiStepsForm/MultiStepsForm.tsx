@@ -77,9 +77,11 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
         <Divider my="sm" color="var(--mantine-color-red-2)" />
 
         <Flex gap="sm">
-          <Button variant="outline" onClick={handleCancel}>
-            Cancel
-          </Button>
+          {active === 1 && (
+            <Button variant="outline" onClick={handleCancel}>
+              Cancel
+            </Button>
+          )}
           {active > 1 && totalSteps > 1 && (
             <Button variant="outline" onClick={previous}>
               Previous

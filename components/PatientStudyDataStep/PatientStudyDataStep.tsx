@@ -1,46 +1,58 @@
-import { FormWrapperWidget } from "../FormWrapperWidget";
+import { Flex, Select, Text } from "@mantine/core";
+import { FunctionComponent, useEffect } from "react";
 import { DatePickerInput } from "@mantine/dates";
-import { MdOutlineCalendarMonth } from "react-icons/md";
-import { useEffect } from "react";
 import { Countries, Diseases } from "@lilly/constants";
-import { SelectWidget } from "../SelectWidget";
+import { MdOutlineCalendarMonth } from "react-icons/md";
+import { UseFormReturnType } from "@mantine/form";
 
-export default function StudyData({ form }) {
-  const { study } = form.values;
+interface PatientStudyDataStepProps {
+  form: UseFormReturnType<any>;
+}
+
+const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
+  form,
+}) => {
+  const { study } = form.values.step1;
 
   useEffect(() => {
     if (!study) {
-      form.setValues({ country: null, disease: null });
+      form.setValues({
+        step1: { ...form.values.step1, country: null, disease: null },
+      });
     }
   }, [study]);
 
   return (
-    <FormWrapperWidget title="Study Data">
-      <SelectWidget
+    <Flex direction="column" gap="lg">
+      <Text fw={500}>Study Data</Text>
+      <Select
         label="Study"
         placeholder="Select a study"
         data={["React", "Angular", "Vue", "Svelte"]}
-        {...form.getInputProps("study")}
+        clearable
+        {...form.getInputProps("step1.study")}
       />
-      <SelectWidget
+      <Select
         label="Country/Region/Site"
         placeholder={study ? "Country/Region/Site" : "Select a study first"}
         data={Countries.Nationality}
         disabled={!study}
-        {...form.getInputProps("country")}
+        clearable
+        {...form.getInputProps("step1.country")}
       />
-      <SelectWidget
+      <Select
         label="Disease"
         placeholder={study ? "Disease" : "Select a study first"}
         data={Diseases.List}
         disabled={!study}
-        {...form.getInputProps("disease")}
+        clearable
+        {...form.getInputProps("step1.disease")}
       />
       <DatePickerInput
         label="Visit Date"
         placeholder="Visit Date"
         valueFormat="DD/MM/YYYY"
-        {...form.getInputProps("visitedAt")}
+        {...form.getInputProps("step1.visitedAt")}
         disabled
       />
       <DatePickerInput
@@ -51,8 +63,10 @@ export default function StudyData({ form }) {
         minDate={new Date()}
         leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
         leftSectionPointerEvents="none"
-        {...form.getInputProps("prescribedAt")}
+        {...form.getInputProps("step1.prescribedAt")}
       />
-    </FormWrapperWidget>
+    </Flex>
   );
-}
+};
+
+export default PatientStudyDataStep;

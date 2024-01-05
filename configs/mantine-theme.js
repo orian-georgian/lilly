@@ -20,8 +20,6 @@ const lillyRed = [
   "#d52b1e",
   "#b22117",
   "#9c1710",
-  "#dfdfdf",
-  "#d52b1e33",
 ];
 
 const primaryDark = [
@@ -35,8 +33,6 @@ const primaryDark = [
   "#717171",
   "#656565",
   "#222222",
-  "#dfdfdf",
-  "#d52b1e33",
 ];
 
 const positive = [
@@ -50,8 +46,6 @@ const positive = [
   "#2ada1e",
   "#1fc116",
   "#078505",
-  "#dfdfdf",
-  "#d52b1e33",
 ];
 
 const mantineTheme = createTheme({

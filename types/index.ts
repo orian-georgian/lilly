@@ -6,3 +6,10 @@ export type MantineForm = {
     error: string;
   };
 };
+
+export type BtsDMARDUsed = {
+  key: string;
+  treatment: Array<string | number>;
+  start: Date;
+  end: Date;
+};

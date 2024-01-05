@@ -12,6 +12,7 @@
     "@mantine/hooks": "^7.4.0",
     "chart.js": "^4.4.1",
     "clsx": "^2.1.0",
+    "lodash": "^4.17.21",
     "mantine-datatable": "^7.3.5",
     "next": "latest",
     "react": "18.2.0",

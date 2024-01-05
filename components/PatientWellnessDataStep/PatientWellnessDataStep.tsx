@@ -1,23 +1,42 @@
 import {
-  SegmentedControl,
   Flex,
+  SegmentedControl,
+  Select,
   Text,
   Tooltip,
   UnstyledButton,
 } from "@mantine/core";
-import { FormWrapperWidget } from "../FormWrapperWidget";
+import { FunctionComponent } from "react";
 import { MdOutlineInfo } from "react-icons/md";
-import { YES_NO } from "./HCPNewPatientWidget";
+import { UseFormReturnType } from "@mantine/form";
 import { DietaryIntakes, Exercises } from "@lilly/constants";
-import { SelectWidget } from "../SelectWidget";
-import { randomId } from "@mantine/hooks";
 
-export default function WellnessData({ form }) {
+interface PatientWellnessDataStepProps {
+  form: UseFormReturnType<any>;
+}
+
+interface Exercise {
+  value: string;
+  label: string;
+  description: string;
+}
+
+const YES_NO = [
+  { value: "Y", label: "Yes" },
+  { value: "N", label: "No" },
+];
+
+const PatientWellnessDataStep: FunctionComponent<
+  PatientWellnessDataStepProps
+> = ({ form }) => {
+  console.log(form.values.step8);
+
   return (
-    <FormWrapperWidget title="Wellness Data">
+    <Flex direction="column" gap="lg">
+      <Text fw={500}>Wellness Data</Text>
       <Flex gap={10} direction="column">
         <Text>Exercise</Text>
-        {Exercises.List.map(({ value, label, description }) => (
+        {Exercises.List.map(({ value, label, description }: Exercise) => (
           <Flex gap={8} align="center" justify="space-between" key={value}>
             <Flex gap={10} align="center">
               <Tooltip
@@ -48,18 +67,21 @@ export default function WellnessData({ form }) {
             </Flex>
             <SegmentedControl
               className="lilly-segmentedControl"
-              {...form.getInputProps(`exercise.${value}`)}
+              {...form.getInputProps(`step8.${value}`)}
               data={YES_NO}
             />
           </Flex>
         ))}
       </Flex>
-      <SelectWidget
+      <Select
+        clearable
         label="Dietary"
         placeholder="Select dietary intake"
         data={DietaryIntakes.List}
-        {...form.getInputProps(`exercise.dietaryIntake`)}
+        {...form.getInputProps(`step8.dietaryIntake`)}
       />
-    </FormWrapperWidget>
+    </Flex>
   );
-}
+};
+
+export default PatientWellnessDataStep;
