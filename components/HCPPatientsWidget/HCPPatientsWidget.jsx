@@ -36,12 +36,34 @@ import {
 import { useRef } from "react";
 
 const initialNewVisitFormValues = {
-  visitDate: new Date(),
-  visitType: null,
-  assessmentDate: null,
-  entryDate: null,
-  baselineTreatment: "",
-  whyNot: "",
+  step1: {
+    visitDate: new Date(),
+    visitType: null,
+    assessmentDate: null,
+    entryDate: null,
+    baselineTreatment: "",
+    whyNot: "",
+  },
+  step2: {
+    diseaseActivities: [
+      { id: 1, questionnaireName: "CDAI", date: "12/12/23", score: 20 },
+      {
+        id: 2,
+        questionnaireName: "DAPSA",
+        date: "12/11/23",
+        score: 25,
+      },
+    ],
+    patientQuestionnaires: [
+      { id: 1, questionnaireName: "WHO-5", date: "12/12/23", score: 57 },
+      {
+        id: 2,
+        questionnaireName: "EQ-5D",
+        date: "12/11/23",
+        score: 95,
+      },
+    ],
+  },
 };
 
 const initialNewPatientFormValues = {
@@ -146,6 +168,11 @@ export default function HCPPatientsWidget() {
 
   const handleCreateNewPatientCancel = (e) => {
     drawerNewPatientFormRef.current?.close();
+  };
+
+  const handleSaveVisit = (values) => {
+    console.log(values);
+    drawerFormRef.current?.close();
   };
 
   const rows = patients.map(
@@ -316,6 +343,7 @@ export default function HCPPatientsWidget() {
           formValidators={addVisitValidators}
           steps={newVisitFormSteps}
           onCancel={handleAddNewVisitCancel}
+          onSubmit={handleSaveVisit}
         />
       </DrawerForm>
       <DrawerForm ref={drawerNewPatientFormRef} title="Create a new Patient">

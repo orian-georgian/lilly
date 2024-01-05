@@ -7,6 +7,7 @@ import mantineTheme from "@lilly/configs/mantine-theme";
 
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import "mantine-datatable/styles.layer.css";
 import "@lilly/styles/global.scss";
 
 function MyApp({ Component, pageProps }) {
