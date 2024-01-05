@@ -34,16 +34,24 @@ const SectionItem = ({ label, value }) => (
 export default function PatientProfile() {
   return (
     <Flex className="w-100" direction="column" gap="lg">
-      <Flex className="w-100" align="center" gap="sm">
+      <Flex
+        className="w-100"
+        align="center"
+        gap="sm"
+        justify="space-between"
+        wrap="wrap"
+      >
         <Title order={4} size="32px">
           User ID
         </Title>
-        <Button className="m-l-auto" variant="outline" color="lilly-red">
-          Change Password
-        </Button>
-        <Button variant="filled" color="lilly-red">
-          Request to Cancel Authorization
-        </Button>
+        <Flex align="center" gap="sm" wrap="wrap">
+          <Button variant="outline" color="lilly-red">
+            Change Password
+          </Button>
+          <Button variant="filled" color="lilly-red">
+            Request to Cancel Authorization
+          </Button>
+        </Flex>
       </Flex>
       <Grid
         p="lg"

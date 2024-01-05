@@ -44,6 +44,64 @@ const initialNewVisitFormValues = {
   whyNot: "",
 };
 
+const initialNewPatientFormValues = {
+  study: null,
+  country: null,
+  disease: null,
+  visitedAt: new Date(),
+  prescribedAt: null,
+  id: "1111",
+  email: "",
+  nationality: "",
+  language: "",
+  dob: null,
+  age: "",
+  weight: "",
+  weightUnit: "kg",
+  height: "",
+  heightUnit: "cm",
+  bmi: "",
+  bmiCategory: "",
+  sex: "",
+  primaryEmployment: "",
+  educationStatus: "",
+  smokingStatus: "",
+  diagnosisDate: null,
+  diseaseEvolution: "",
+  csDMARDUsed: [],
+  btsDMARDUsed: [{ treatment: [], start: null, end: null }],
+  csDMARDBaseline: [],
+  corticosteroidBaseline: [],
+  btsDMARDBaseline: [{ treatment: [], start: null, end: null }],
+  cdai: {
+    tenderJointCount: 0,
+    swollenJointCount: 0,
+    globalPatient: 0,
+    globalHCP: 0,
+  },
+  dapsa: {
+    tenderJointCount: 0,
+    swollenJointCount: 0,
+    patientPain: 0,
+    globalPatient: 0,
+    globalEvaluator: 0,
+  },
+  exercise: {
+    walking: "",
+    stretching: "",
+    flowingMovements: "",
+    workingOutInWater: "",
+    cycling: "",
+    strengthTraining: "",
+    handExercise: "",
+    dietaryIntake: "",
+  },
+  sleepTrouble: "",
+  nightWakeUp: "",
+  troubleStayingSleep: "",
+  feelingTired: "",
+};
+
 export default function HCPPatientsWidget() {
   const {
     isLoading,
@@ -53,8 +111,17 @@ export default function HCPPatientsWidget() {
     filterPatients,
   } = useHCPDashboard();
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const drawerFormRef = useRef(null);
+
+  const drawerAddVisitFormRef = useRef(null);
+
+  const drawerNewPatientFormRef = useRef(null);
+
   const newVisitFormSteps = [
+    AddNewVisitDataStep,
+    AddNewVisitQuestionnairesStep,
+  ];
+
+  const newPatientFormSteps = [
     AddNewVisitDataStep,
     AddNewVisitQuestionnairesStep,
   ];
@@ -65,11 +132,20 @@ export default function HCPPatientsWidget() {
 
   const handleAddNewVisit = (e) => {
     e.stopPropagation();
-    drawerFormRef.current?.open();
+    drawerAddVisitFormRef.current?.open();
   };
 
   const handleAddNewVisitCancel = () => {
-    drawerFormRef.current?.close();
+    drawerAddVisitFormRef.current?.close();
+  };
+
+  const handleCreateNewPatient = (e) => {
+    e.stopPropagation();
+    drawerNewPatientFormRef.current?.open();
+  };
+
+  const handleCreateNewPatientCancel = (e) => {
+    drawerNewPatientFormRef.current?.close();
   };
 
   const rows = patients.map(
@@ -195,6 +271,13 @@ export default function HCPPatientsWidget() {
           leftSection={<IoIosSearch size={20} />}
           onChange={filterPatients}
         />
+        <Button
+          fullWidth={isMobile}
+          variant="outline"
+          onClick={handleCreateNewPatient}
+        >
+          Add New Patient
+        </Button>
         <HCPNewPatientWidget {...{ isMobile }} />
       </Flex>
       <Divider my="xs" color="var(--mantine-color-red-2)" />
@@ -224,7 +307,7 @@ export default function HCPPatientsWidget() {
           <Table.Tbody>{rows.length > 0 ? rows : noData}</Table.Tbody>
         </Table>
       </Table.ScrollContainer>
-      <DrawerForm ref={drawerFormRef} title="Add a new visit">
+      <DrawerForm ref={drawerAddVisitFormRef} title="Add a new visit">
         <MultiStepsForm
           totalSteps={newVisitFormSteps.length}
           startFrom={1}
@@ -233,6 +316,17 @@ export default function HCPPatientsWidget() {
           formValidators={addVisitValidators}
           steps={newVisitFormSteps}
           onCancel={handleAddNewVisitCancel}
+        />
+      </DrawerForm>
+      <DrawerForm ref={drawerNewPatientFormRef} title="Create a new Patient">
+        <MultiStepsForm
+          totalSteps={newPatientFormSteps.length}
+          startFrom={1}
+          submitText="Create Patient"
+          formValues={initialNewPatientFormValues}
+          formValidators={addVisitValidators}
+          steps={newPatientFormSteps}
+          onCancel={handleCreateNewPatientCancel}
         />
       </DrawerForm>
     </Paper>
