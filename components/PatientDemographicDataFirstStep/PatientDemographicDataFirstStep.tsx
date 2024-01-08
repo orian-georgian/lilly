@@ -20,6 +20,10 @@ interface PatientDemographicDataFirstStepProps {
 
 export const Null = () => null;
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientDemographicDataFirstStep: FunctionComponent<
   PatientDemographicDataFirstStepProps
 > = ({ form }) => {
@@ -48,18 +52,21 @@ const PatientDemographicDataFirstStep: FunctionComponent<
     <Flex direction="column" gap="lg">
       <Text fw={500}>Demographic Data - Part 1/2</Text>
       <TextInput
+        classNames={classNames}
         label="ID"
         placeholder="id"
         {...form.getInputProps("step2.id")}
         disabled
       />
       <TextInput
+        classNames={classNames}
         label="E-Mail Address"
         placeholder="Fill in the e-mail address"
         withAsterisk
         {...form.getInputProps("step2.email")}
       />
       <Select
+        classNames={classNames}
         label="Nationality"
         placeholder="Select a nationality"
         data={Countries.Nationality}
@@ -68,6 +75,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         {...form.getInputProps("step2.nationality")}
       />
       <Select
+        classNames={classNames}
         label="Language"
         placeholder="Select a language"
         data={Countries.Language}
@@ -78,6 +86,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
       <Grid>
         <Grid.Col span={{ base: 12, md: 9, lg: 9 }}>
           <DatePickerInput
+            classNames={classNames}
             label="Date of Birth"
             placeholder="Select a date"
             valueFormat="DD/MM/YYYY"
@@ -91,6 +100,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3, lg: 3 }}>
           <NumberInput
+            classNames={classNames}
             label="Age"
             disabled
             {...form.getInputProps("step2.age")}
@@ -99,6 +109,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         </Grid.Col>
       </Grid>
       <NumberInput
+        classNames={classNames}
         label="Weight"
         placeholder="weight"
         withAsterisk
@@ -115,6 +126,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         }
       />
       <NumberInput
+        classNames={classNames}
         label="Height"
         placeholder="height"
         withAsterisk
@@ -133,6 +145,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
       <Grid>
         <Grid.Col span={{ base: 12, md: 3, lg: 3 }}>
           <NumberInput
+            classNames={classNames}
             label="BMI"
             disabled
             {...form.getInputProps("step2.bmi")}
@@ -141,6 +154,9 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 9, lg: 9 }}>
           <TextInput
+            classNames={{
+              label: "input-label-normal",
+            }}
             label="BMI Category"
             {...form.getInputProps("step2.bmiCategory")}
             disabled

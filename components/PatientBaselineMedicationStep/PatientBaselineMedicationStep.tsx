@@ -20,6 +20,10 @@ interface PatientBaselineMedicationStepProps {
 
 export const Null = () => null;
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientBaselineMedicationStep: FunctionComponent<
   PatientBaselineMedicationStepProps
 > = ({ form }) => {
@@ -27,6 +31,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
     <Flex direction="column" gap="lg">
       <Text fw={500}>Baseline Medication</Text>
       <MultiSelect
+        classNames={classNames}
         clearable
         withAsterisk
         label="Concomitant csDMARD at baseline"
@@ -43,6 +48,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
         {...form.getInputProps("step5.csDMARDBaseline")}
       />
       <MultiSelect
+        classNames={classNames}
         clearable
         withAsterisk
         label="Concomitant Costicosteroid at baseline"
@@ -90,6 +96,9 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 </ActionIcon>
               </Flex>
               <MultiSelect
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 clearable
                 withAsterisk
                 label="Treatment"
@@ -100,6 +109,9 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 )}
               />
               <DatePickerInput
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 label="Start date"
                 placeholder="Select a date"
                 valueFormat="DD/MM/YYYY"
@@ -110,6 +122,9 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 {...form.getInputProps(`step5.btsDMARDBaseline.${index}.start`)}
               />
               <DatePickerInput
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 label="End date"
                 placeholder={
                   !item.start ? "Select a start date first" : "Select a date"

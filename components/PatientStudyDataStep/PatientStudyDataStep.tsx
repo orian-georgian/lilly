@@ -9,6 +9,10 @@ interface PatientStudyDataStepProps {
   form: UseFormReturnType<any>;
 }
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
   form,
 }) => {
@@ -26,6 +30,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
     <Flex direction="column" gap="lg">
       <Text fw={500}>Study Data</Text>
       <Select
+        classNames={classNames}
         label="Study"
         placeholder="Select a study"
         data={["Study1", "Study2", "Study3", "Study4"]}
@@ -34,6 +39,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         {...form.getInputProps("step1.study")}
       />
       <Select
+        classNames={classNames}
         label="Country/Region/Site"
         placeholder={study ? "Country/Region/Site" : "Select a study first"}
         data={Countries.Nationality}
@@ -43,6 +49,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         {...form.getInputProps("step1.country")}
       />
       <Select
+        classNames={classNames}
         label="Disease"
         placeholder={study ? "Disease" : "Select a study first"}
         data={Diseases.List}
@@ -52,6 +59,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         {...form.getInputProps("step1.disease")}
       />
       <DatePickerInput
+        classNames={classNames}
         label="Visit Date"
         placeholder="Visit Date"
         valueFormat="DD/MM/YYYY"
@@ -59,6 +67,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         disabled
       />
       <DatePickerInput
+        classNames={classNames}
         label="Treatment Prescribes Date"
         placeholder="Select a date"
         valueFormat="DD/MM/YYYY"

@@ -17,6 +17,10 @@ interface PatientDemographicDataSecondStepProps {
 
 export const Null = () => null;
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientDemographicDataSecondStep: FunctionComponent<
   PatientDemographicDataSecondStepProps
 > = ({ form }) => {
@@ -37,6 +41,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
     <Flex direction="column" gap="lg">
       <Text fw={500}>Demographic Data - Part 2/2</Text>
       <Select
+        classNames={classNames}
         clearable
         label="Sex"
         placeholder="Select a sex"
@@ -45,6 +50,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         {...form.getInputProps("step3.sex")}
       />
       <Select
+        classNames={classNames}
         clearable
         label="Primary Employment"
         placeholder="Are you employed at the moment"
@@ -53,6 +59,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         {...form.getInputProps("step3.primaryEmployment")}
       />
       <Select
+        classNames={classNames}
         clearable
         label="Education Status"
         placeholder="Select an education status"
@@ -61,6 +68,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         {...form.getInputProps("step3.educationStatus")}
       />
       <Select
+        classNames={classNames}
         clearable
         label="Smoking Status"
         placeholder="Select a smoking status"
@@ -69,6 +77,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         {...form.getInputProps("step3.smokingStatus")}
       />
       <DatePickerInput
+        classNames={classNames}
         label="Disease Diagnosis Date"
         placeholder="Select a date"
         valueFormat="DD/MM/YYYY"
@@ -80,6 +89,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         {...form.getInputProps("step3.diagnosisDate")}
       />
       <TextInput
+        classNames={classNames}
         label="Years of Disease Evolution"
         {...form.getInputProps("step3.diseaseEvolution")}
         disabled

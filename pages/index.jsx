@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <Flex>
       {/* <PatientDashboard /> */}
-      {/* <HCPDashboard /> */}
+      <HCPDashboard />
       {/* <PatientProfile /> */}
-      <CoreTeamDashboard />
+      {/* <CoreTeamDashboard /> */}
       {/* <HCPDashboard /> */}
     </Flex>
   );

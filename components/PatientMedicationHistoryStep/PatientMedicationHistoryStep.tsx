@@ -20,6 +20,10 @@ interface PatientMedicationHistoryStepProps {
 
 export const Null = () => null;
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientMedicationHistoryStep: FunctionComponent<
   PatientMedicationHistoryStepProps
 > = ({ form }) => {
@@ -27,6 +31,7 @@ const PatientMedicationHistoryStep: FunctionComponent<
     <Flex direction="column" gap="lg">
       <Text fw={500}>Medication History</Text>
       <MultiSelect
+        classNames={classNames}
         clearable
         withAsterisk
         label="csDMARD previously used"
@@ -82,6 +87,9 @@ const PatientMedicationHistoryStep: FunctionComponent<
                 </ActionIcon>
               </Flex>
               <MultiSelect
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 clearable
                 withAsterisk
                 label="Treatment"
@@ -90,6 +98,9 @@ const PatientMedicationHistoryStep: FunctionComponent<
                 {...form.getInputProps(`step4.btsDMARDUsed.${index}.treatment`)}
               />
               <MonthPickerInput
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 label="Start month/year"
                 placeholder="Select a date"
                 valueFormat="MM/YYYY"
@@ -100,6 +111,9 @@ const PatientMedicationHistoryStep: FunctionComponent<
                 {...form.getInputProps(`step4.btsDMARDUsed.${index}.start`)}
               />
               <MonthPickerInput
+                classNames={{
+                  label: "input-label-normal",
+                }}
                 label="End month/year"
                 placeholder={
                   !item.start ? "Select a start date first" : "Select a date"

@@ -7,6 +7,10 @@ interface PatientSleepDisturbanceStepProps {
   form: UseFormReturnType<any>;
 }
 
+const classNames = {
+  label: "input-label-normal",
+};
+
 const PatientSleepDisturbanceStep: FunctionComponent<
   PatientSleepDisturbanceStepProps
 > = ({ form }) => {
@@ -15,6 +19,7 @@ const PatientSleepDisturbanceStep: FunctionComponent<
       <Text fw={500}>Sleep Disturbance</Text>
       <Text>How often per month do you:</Text>
       <Select
+        classNames={classNames}
         withAsterisk
         clearable
         label="Have trouble falling asleep?"
@@ -23,6 +28,7 @@ const PatientSleepDisturbanceStep: FunctionComponent<
         {...form.getInputProps("step9.sleepTrouble")}
       />
       <Select
+        classNames={classNames}
         withAsterisk
         clearable
         label="Wake up several times per night?"
@@ -31,6 +37,7 @@ const PatientSleepDisturbanceStep: FunctionComponent<
         {...form.getInputProps("step9.nightWakeUp")}
       />
       <Select
+        classNames={classNames}
         withAsterisk
         clearable
         label="Have trouble staying asleep (including waking far away too early)?"
@@ -39,6 +46,7 @@ const PatientSleepDisturbanceStep: FunctionComponent<
         {...form.getInputProps("step9.troubleStayingSleep")}
       />
       <Select
+        classNames={classNames}
         withAsterisk
         clearable
         label="Wake up after your usual amount of sleep feeling tired and worn out?"
