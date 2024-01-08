@@ -16,3 +16,4 @@ export { default as SleepDisturbances } from "./sleep-disturbances";
 export { default as DiseaseActivities } from "./disease-activities";
 export { default as BmiCategories } from "./bmi-categories";
 export { default as Corticosteroids } from "./corticosteroids";
+export { default as CountryStatuses } from "./country-statuses";

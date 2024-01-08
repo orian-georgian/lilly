@@ -25,8 +25,6 @@ ChartJS.register(
   Colors
 );
 
-console.log(Colors);
-
 export default function LineChartWidget({ title, labels, datasets }) {
   const options = {
     ...chartOptions,
