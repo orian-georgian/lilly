@@ -19,8 +19,6 @@ interface Activity {
 export const Null = () => null;
 
 const PatientCDAIStep: FunctionComponent<PatientCDAIStepProps> = ({ form }) => {
-  console.log(form.values.step6);
-
   const { cdai } = form.values.step6;
 
   const activities = cdai.map(({ id, score }: Activity) => ({

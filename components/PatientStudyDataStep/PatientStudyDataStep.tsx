@@ -28,8 +28,9 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
       <Select
         label="Study"
         placeholder="Select a study"
-        data={["React", "Angular", "Vue", "Svelte"]}
+        data={["Study1", "Study2", "Study3", "Study4"]}
         clearable
+        withAsterisk
         {...form.getInputProps("step1.study")}
       />
       <Select
@@ -38,6 +39,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         data={Countries.Nationality}
         disabled={!study}
         clearable
+        withAsterisk
         {...form.getInputProps("step1.country")}
       />
       <Select
@@ -46,6 +48,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         data={Diseases.List}
         disabled={!study}
         clearable
+        withAsterisk
         {...form.getInputProps("step1.disease")}
       />
       <DatePickerInput
@@ -60,6 +63,7 @@ const PatientStudyDataStep: FunctionComponent<PatientStudyDataStepProps> = ({
         placeholder="Select a date"
         valueFormat="DD/MM/YYYY"
         clearable
+        withAsterisk
         minDate={new Date()}
         leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
         leftSectionPointerEvents="none"

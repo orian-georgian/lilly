@@ -30,8 +30,10 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
     total: totalSteps,
     initialPage: startFrom,
   });
+
   const StepComponent: FunctionComponent<{ form: MantineForm }> =
     steps[active - 1];
+
   const form: any = useForm({
     initialValues: formValues,
     validate: formValidators,
@@ -44,9 +46,14 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
   };
 
   const handleNext = () => {
-    const errors = validateStepFields(form, `step${active}`);
+    const { errors } = form.validate();
 
-    if (errors.length === 0) {
+    const errorInStep = Object.keys(errors).find((error) =>
+      error.startsWith(`step${active}`)
+    );
+
+    if (!errorInStep) {
+      form.clearErrors();
       next();
     }
   };

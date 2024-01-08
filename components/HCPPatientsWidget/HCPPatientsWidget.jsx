@@ -22,7 +22,10 @@ import {
   getColorByPatientStatus,
 } from "@lilly/utils";
 
-import { addVisitValidators } from "@lilly/utils/form-validators";
+import {
+  addVisitValidators,
+  newPatientValidators,
+} from "@lilly/utils/form-validators";
 import {
   PatientDataStatuses,
   PatientStatuses,
@@ -207,7 +210,7 @@ export default function HCPPatientsWidget() {
 
   const handleSaveVisit = (values) => {
     console.log(values);
-    drawerFormRef.current?.close();
+    drawerAddVisitFormRef.current?.close();
   };
 
   const rows = patients.map(
@@ -386,7 +389,7 @@ export default function HCPPatientsWidget() {
           startFrom={1}
           submitText="Create Patient"
           formValues={initialNewPatientFormValues}
-          formValidators={addVisitValidators}
+          formValidators={newPatientValidators}
           steps={newPatientFormSteps}
           onCancel={handleCreateNewPatientCancel}
         />

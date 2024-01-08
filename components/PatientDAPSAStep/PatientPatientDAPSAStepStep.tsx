@@ -21,8 +21,6 @@ export const Null = () => null;
 const PatientDAPSAStep: FunctionComponent<PatientDAPSAStepProps> = ({
   form,
 }) => {
-  console.log(form.values.step7);
-
   const { dapsa } = form.values.step7;
 
   const activities = dapsa.map(({ id, score }: Activity) => ({

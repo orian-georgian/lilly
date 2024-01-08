@@ -23,7 +23,6 @@ export const Null = () => null;
 const PatientDemographicDataFirstStep: FunctionComponent<
   PatientDemographicDataFirstStepProps
 > = ({ form }) => {
-  console.log(form.values.step2);
   const { dob, weight, weightUnit, height, heightUnit } = form.values.step2;
 
   useEffect(
@@ -57,12 +56,14 @@ const PatientDemographicDataFirstStep: FunctionComponent<
       <TextInput
         label="E-Mail Address"
         placeholder="Fill in the e-mail address"
+        withAsterisk
         {...form.getInputProps("step2.email")}
       />
       <Select
         label="Nationality"
         placeholder="Select a nationality"
         data={Countries.Nationality}
+        withAsterisk
         clearable
         {...form.getInputProps("step2.nationality")}
       />
@@ -70,6 +71,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
         label="Language"
         placeholder="Select a language"
         data={Countries.Language}
+        withAsterisk
         clearable
         {...form.getInputProps("step2.language")}
       />
@@ -79,6 +81,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
             label="Date of Birth"
             placeholder="Select a date"
             valueFormat="DD/MM/YYYY"
+            withAsterisk
             clearable
             leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
             leftSectionPointerEvents="none"
@@ -98,6 +101,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
       <NumberInput
         label="Weight"
         placeholder="weight"
+        withAsterisk
         {...form.getInputProps("step2.weight")}
         styles={{ section: { width: "auto", right: 0 } }}
         rightSection={
@@ -113,6 +117,7 @@ const PatientDemographicDataFirstStep: FunctionComponent<
       <NumberInput
         label="Height"
         placeholder="height"
+        withAsterisk
         {...form.getInputProps("step2.height")}
         styles={{ section: { width: "auto", right: 0 } }}
         rightSection={

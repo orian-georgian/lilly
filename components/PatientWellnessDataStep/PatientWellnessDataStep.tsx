@@ -29,8 +29,6 @@ const YES_NO = [
 const PatientWellnessDataStep: FunctionComponent<
   PatientWellnessDataStepProps
 > = ({ form }) => {
-  console.log(form.values.step8);
-
   return (
     <Flex direction="column" gap="lg">
       <Text fw={500}>Wellness Data</Text>
@@ -65,11 +63,18 @@ const PatientWellnessDataStep: FunctionComponent<
               </Tooltip>
               <Text>{label}</Text>
             </Flex>
-            <SegmentedControl
-              className="lilly-segmentedControl"
-              {...form.getInputProps(`step8.${value}`)}
-              data={YES_NO}
-            />
+            <Flex direction="column">
+              <SegmentedControl
+                className="lilly-segmentedControl"
+                {...form.getInputProps(`step8.${value}`)}
+                data={YES_NO}
+              />
+              {form.errors[`step8.${value}`] && (
+                <Text className="custom-error">
+                  {form.errors[`step8.${value}`]}
+                </Text>
+              )}
+            </Flex>
           </Flex>
         ))}
       </Flex>

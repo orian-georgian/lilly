@@ -20,8 +20,6 @@ export const Null = () => null;
 const PatientDemographicDataSecondStep: FunctionComponent<
   PatientDemographicDataSecondStepProps
 > = ({ form }) => {
-  console.log(form.values.step3);
-
   const { diagnosisDate } = form.values.step3;
 
   useEffect(() => {
@@ -42,6 +40,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         clearable
         label="Sex"
         placeholder="Select a sex"
+        withAsterisk
         data={Genders.List}
         {...form.getInputProps("step3.sex")}
       />
@@ -50,6 +49,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         label="Primary Employment"
         placeholder="Are you employed at the moment"
         data={YES_NO}
+        withAsterisk
         {...form.getInputProps("step3.primaryEmployment")}
       />
       <Select
@@ -57,6 +57,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         label="Education Status"
         placeholder="Select an education status"
         data={EducationStatuses.List}
+        withAsterisk
         {...form.getInputProps("step3.educationStatus")}
       />
       <Select
@@ -64,6 +65,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         label="Smoking Status"
         placeholder="Select a smoking status"
         data={SmokingStatuses.List}
+        withAsterisk
         {...form.getInputProps("step3.smokingStatus")}
       />
       <DatePickerInput
@@ -71,6 +73,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         placeholder="Select a date"
         valueFormat="DD/MM/YYYY"
         clearable
+        withAsterisk
         leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
         leftSectionPointerEvents="none"
         maxDate={new Date()}

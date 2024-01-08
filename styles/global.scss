@@ -66,3 +66,17 @@ img {
 .mantine-InputWrapper-label {
   font-weight: 400;
 }
+
+.custom-error {
+  color: var(--mantine-color-error);
+  font-size: var(
+    --input-error-size,
+    calc(var(--mantine-font-size-sm) - 0.125rem * var(--mantine-scale))
+  );
+  word-wrap: break-word;
+  display: block;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+}

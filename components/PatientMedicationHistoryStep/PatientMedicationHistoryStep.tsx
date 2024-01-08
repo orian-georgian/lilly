@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { FunctionComponent } from "react";
 import { MonthPickerInput } from "@mantine/dates";
-import { MdOutlineDelete } from "react-icons/md";
+import { MdOutlineDelete, MdOutlineCalendarMonth } from "react-icons/md";
 import { UseFormReturnType } from "@mantine/form";
 import { Treatments } from "@lilly/constants";
 import { randomId } from "@mantine/hooks";
@@ -23,12 +23,12 @@ export const Null = () => null;
 const PatientMedicationHistoryStep: FunctionComponent<
   PatientMedicationHistoryStepProps
 > = ({ form }) => {
-  console.log(form.values.step4);
   return (
     <Flex direction="column" gap="lg">
       <Text fw={500}>Medication History</Text>
       <MultiSelect
         clearable
+        withAsterisk
         label="csDMARD previously used"
         placeholder="Select previously used medication"
         data={[
@@ -67,7 +67,7 @@ const PatientMedicationHistoryStep: FunctionComponent<
             pb="xs"
             radius="lg"
             withBorder
-            key={randomId()}
+            //key={randomId()}
           >
             <Flex direction="column" gap={20}>
               <Flex align="center" justify="space-between">
@@ -83,6 +83,7 @@ const PatientMedicationHistoryStep: FunctionComponent<
               </Flex>
               <MultiSelect
                 clearable
+                withAsterisk
                 label="Treatment"
                 placeholder="Select a treatment"
                 data={Treatments.List}
@@ -94,6 +95,8 @@ const PatientMedicationHistoryStep: FunctionComponent<
                 valueFormat="MM/YYYY"
                 maxDate={new Date()}
                 clearable
+                withAsterisk
+                leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
                 {...form.getInputProps(`step4.btsDMARDUsed.${index}.start`)}
               />
               <MonthPickerInput
@@ -106,6 +109,8 @@ const PatientMedicationHistoryStep: FunctionComponent<
                 maxDate={new Date()}
                 disabled={!item.start}
                 clearable
+                withAsterisk
+                leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
                 {...form.getInputProps(`step4.btsDMARDUsed.${index}.end`)}
               />
             </Flex>

@@ -8,9 +8,9 @@ import {
 } from "@mantine/core";
 import { FunctionComponent } from "react";
 import { DatePickerInput } from "@mantine/dates";
-import { MdOutlineDelete } from "react-icons/md";
+import { MdOutlineDelete, MdOutlineCalendarMonth } from "react-icons/md";
 import { UseFormReturnType } from "@mantine/form";
-import { Treatments } from "@lilly/constants";
+import { Corticosteroids, Treatments } from "@lilly/constants";
 import { randomId } from "@mantine/hooks";
 import { BtsDMARDUsed } from "@lilly/types/index";
 
@@ -23,12 +23,12 @@ export const Null = () => null;
 const PatientBaselineMedicationStep: FunctionComponent<
   PatientBaselineMedicationStepProps
 > = ({ form }) => {
-  console.log(form.values.step5);
   return (
     <Flex direction="column" gap="lg">
       <Text fw={500}>Baseline Medication</Text>
       <MultiSelect
         clearable
+        withAsterisk
         label="Concomitant csDMARD at baseline"
         placeholder="Select concomitant csDMARD at baseline"
         data={[
@@ -44,17 +44,10 @@ const PatientBaselineMedicationStep: FunctionComponent<
       />
       <MultiSelect
         clearable
+        withAsterisk
         label="Concomitant Costicosteroid at baseline"
         placeholder="Select concomitant Costicosteroid at baseline"
-        data={[
-          "methotrexate (Rheumatrex, Trexall, other)",
-          "leflunomide",
-          "sulfasalazine",
-          "cyclosporin A – (oral)",
-          "chloroquine",
-          "hydroxychloroquine",
-          "sodium aurothiomalate: myocrisin",
-        ]}
+        data={Corticosteroids.List}
         {...form.getInputProps("step5.corticosteroidBaseline")}
       />
       <Flex direction="row" wrap="wrap" justify="space-between" gap={8}>
@@ -82,7 +75,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
             pb="xs"
             radius="lg"
             withBorder
-            key={randomId()}
+            //key={randomId()}
           >
             <Flex direction="column" gap={20}>
               <Flex align="center" justify="space-between">
@@ -98,6 +91,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
               </Flex>
               <MultiSelect
                 clearable
+                withAsterisk
                 label="Treatment"
                 placeholder="Select a treatment"
                 data={Treatments.List}
@@ -111,6 +105,8 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 valueFormat="DD/MM/YYYY"
                 maxDate={new Date()}
                 clearable
+                withAsterisk
+                leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
                 {...form.getInputProps(`step5.btsDMARDBaseline.${index}.start`)}
               />
               <DatePickerInput
@@ -123,6 +119,8 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 maxDate={new Date()}
                 disabled={!item.start}
                 clearable
+                withAsterisk
+                leftSection={<MdOutlineCalendarMonth height={20} width={20} />}
                 {...form.getInputProps(`step5.btsDMARDBaseline.${index}.end`)}
               />
             </Flex>

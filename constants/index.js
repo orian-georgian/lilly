@@ -15,3 +15,4 @@ export { default as Exercises } from "./exercises";
 export { default as SleepDisturbances } from "./sleep-disturbances";
 export { default as DiseaseActivities } from "./disease-activities";
 export { default as BmiCategories } from "./bmi-categories";
+export { default as Corticosteroids } from "./corticosteroids";
