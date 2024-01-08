@@ -8,6 +8,7 @@ export { HCPPatientsWidget } from "./HCPPatientsWidget";
 export { WarningsWidget } from "./WarningsWidget";
 export { PatientDashboard } from "./PatientDashboard";
 export { HCPDashboard } from "./HCPDashboard";
+export { CoreTeamDashboard } from "./CoreTeamDashboard";
 export { LineChartWidget } from "./LineChartWidget";
 export { PatientProfile } from "./PatientProfile";
 export { DrawerForm } from "./DrawerForm";

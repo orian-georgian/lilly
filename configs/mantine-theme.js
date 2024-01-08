@@ -3,10 +3,13 @@ import {
   AppShell,
   NavLink,
   Badge,
+  Button,
   Alert,
   Table,
   Title,
   Drawer,
+  List,
+  Text,
 } from "@mantine/core";
 
 const lillyRed = [
@@ -60,6 +63,9 @@ const mantineTheme = createTheme({
     "primary-dark": primaryDark,
     positive,
   },
+  radius: {
+    md: "6px",
+  },
   components: {
     AppShell: AppShell.Navbar.extend({
       styles: {
@@ -96,9 +102,13 @@ const mantineTheme = createTheme({
         return {
           root: {
             backgroundColor: `var(--mantine-color-${color}-light)`,
+            padding: `1px 8px`,
+            height: 22,
           },
           label: {
             textTransform: "none",
+            fontSize: 16,
+            fontWeight: 500,
           },
         };
       },
@@ -123,6 +133,31 @@ const mantineTheme = createTheme({
       styles: {
         root: {
           color: `var(--mantine-color-primary-dark-9)`,
+        },
+      },
+    }),
+    List: List.extend({
+      styles: {
+        itemWrapper: {
+          width: "100%",
+        },
+        itemLabel: {
+          width: "100%",
+        },
+      },
+    }),
+    Text: Text.extend({
+      styles: {
+        root: {
+          color: "var(--mantine-color-primary-dark-9)",
+        },
+      },
+    }),
+    Button: Button.extend({
+      styles: {
+        label: {
+          fontWeight: 500,
+          fontSize: 16,
         },
       },
     }),
