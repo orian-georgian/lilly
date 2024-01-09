@@ -8,9 +8,10 @@ import {
 export default function Home() {
   return (
     <Flex>
-      {/* <PatientDashboard /> */}
-      <CoreTeamDashboard />
-      {/* <HCPDashboard /> */}
+      {/* PatientDashboard /> */}
+      {/* <CoreTeamDashboard /> */}
+      <HCPDashboard />
     </Flex>
   );
 }
+/*  */

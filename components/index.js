@@ -15,3 +15,4 @@ export { DrawerForm } from "./DrawerForm";
 export { MultiStepsForm } from "./MultiStepsForm";
 export { AddNewVisitDataStep } from "./AddNewVisitDataStep";
 export { AddNewVisitQuestionnairesStep } from "./AddNewVisitQuestionnairesStep";
+export { UsersWidget } from "./UsersWidget";
