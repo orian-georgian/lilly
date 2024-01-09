@@ -1,4 +1,5 @@
-import { Flex, Image, Burger, Indicator, Avatar } from "@mantine/core";
+import Image from "next/image";
+import { Flex, Burger, Indicator, Avatar } from "@mantine/core";
 
 export default function Header({ opened, onToggleSidebar }) {
   const handleToggleSidebar = () => {
@@ -10,7 +11,7 @@ export default function Header({ opened, onToggleSidebar }) {
   return (
     <Flex align="flex-end" h="100%" pl="md" pr="md" pb="xs">
       <Flex align="center" gap="lg" w="100%">
-        <Image src="images/logo.png" alt="Lilly logo" w={98} />
+        <Image width={89} height={50} src="/images/logo.png" alt="Lilly logo" />
         <Burger
           className="m-l-auto"
           opened={opened}

@@ -16,3 +16,4 @@ export { MultiStepsForm } from "./MultiStepsForm";
 export { AddNewVisitDataStep } from "./AddNewVisitDataStep";
 export { AddNewVisitQuestionnairesStep } from "./AddNewVisitQuestionnairesStep";
 export { UsersWidget } from "./UsersWidget";
+export { StudiesManagementWidget } from "./StudiesManagementWidget";

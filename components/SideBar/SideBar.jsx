@@ -1,6 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import {
   Flex,
-  Image,
   NavLink,
   Avatar,
   Indicator,
@@ -12,6 +13,8 @@ import {
   MdOutlineSettings,
   MdLogout,
 } from "react-icons/md";
+import { LiaHospital } from "react-icons/lia";
+
 import { useRouter } from "next/router";
 
 const navList = [
@@ -24,6 +27,11 @@ const navList = [
     label: "User Management",
     path: "/user-management",
     Icon: MdOutlineSupervisorAccount,
+  },
+  {
+    label: "Study Management",
+    path: "/study-management",
+    Icon: LiaHospital,
   },
 ];
 
@@ -39,21 +47,26 @@ export default function SideBar() {
         pl="lg"
         pr="lg"
       >
-        <Image src="images/logo.png" alt="Lilly logo" w={120} />
+        <Image
+          width={120}
+          height={50}
+          src="/images/logo.png"
+          alt="Lilly logo"
+        />
       </Flex>
       <Flex direction="column" align="center" gap={8} pl="lg" pr="lg">
         {navList.map(({ label, path, Icon }) => (
-          <NavLink
-            className={`lilly-nav-link ${
-              pathname === path ? "selected" : "unselected"
-            }`}
-            key={path}
-            href={path}
-            label={label}
-            active={pathname === path}
-            color="lilly-red"
-            leftSection={<Icon size={17} />}
-          />
+          <Link className="w-100" key={path} href={path} passHref>
+            <NavLink
+              className={`lilly-nav-link ${
+                pathname === path ? "selected" : "unselected"
+              }`}
+              label={label}
+              active={pathname === path}
+              color="lilly-red"
+              leftSection={<Icon size={17} />}
+            />
+          </Link>
         ))}
       </Flex>
       <Flex
@@ -62,43 +75,45 @@ export default function SideBar() {
         gap={8}
         p="lg"
       >
-        <NavLink
-          className={`lilly-nav-link ${
-            pathname === "/settings" ? "selected" : "unselected"
-          }`}
-          href="/settings"
-          label="Settings"
-          active={pathname === "/settings"}
-          color="lilly-red"
-          leftSection={<MdOutlineSettings size={17} />}
-        />
-        <NavLink
-          className={`lilly-nav-link ${
-            pathname === "/profile" ? "selected" : "unselected"
-          }`}
-          href="/profile"
-          label="Logged in as"
-          description="John Doe"
-          active={pathname === "/profile"}
-          color="lilly-red"
-          p="xs"
-          leftSection={
-            <Indicator
-              color="green"
-              position="bottom-end"
-              size={12}
-              offset={5}
-              withBorder
-            >
-              <Avatar w={40} h={40} src="images/avatar.png" />
-            </Indicator>
-          }
-          rightSection={
-            <UnstyledButton className="m-l-auto">
-              <MdLogout />
-            </UnstyledButton>
-          }
-        />
+        <Link className="w-100" key="/settings" href="/settings" passHref>
+          <NavLink
+            className={`lilly-nav-link ${
+              pathname === "/settings" ? "selected" : "unselected"
+            }`}
+            label="Settings"
+            active={pathname === "/settings"}
+            color="lilly-red"
+            leftSection={<MdOutlineSettings size={17} />}
+          />
+        </Link>
+        <Link className="w-100" key="/profile" href="/profile" passHref>
+          <NavLink
+            className={`lilly-nav-link ${
+              pathname === "/profile" ? "selected" : "unselected"
+            }`}
+            label="Logged in as"
+            description="John Doe"
+            active={pathname === "/profile"}
+            color="lilly-red"
+            p="xs"
+            leftSection={
+              <Indicator
+                color="green"
+                position="bottom-end"
+                size={12}
+                offset={5}
+                withBorder
+              >
+                <Avatar w={40} h={40} src="images/avatar.png" />
+              </Indicator>
+            }
+            rightSection={
+              <UnstyledButton className="m-l-auto">
+                <MdLogout />
+              </UnstyledButton>
+            }
+          />
+        </Link>
       </Flex>
     </Flex>
   );
