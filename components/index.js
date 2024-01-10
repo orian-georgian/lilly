@@ -26,3 +26,4 @@ export { PatientDAPSAStep } from "./PatientDAPSAStep";
 export { PatientWellnessDataStep } from "./PatientWellnessDataStep";
 export { PatientSleepDisturbanceStep } from "./PatientSleepDisturbanceStep";
 export { EditPatientData } from "./EditPatientData";
+export { UsersWidget } from "./UsersWidget";

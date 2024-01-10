@@ -18,3 +18,5 @@ export { default as BmiCategories } from "./bmi-categories";
 export { default as Corticosteroids } from "./corticosteroids";
 export { default as CountryStatuses } from "./country-statuses";
 export { default as YesNo } from "./yes-no";
+export { default as UserTypes } from "./user-types";
+export { default as UserStatuses } from "./user-statuses";

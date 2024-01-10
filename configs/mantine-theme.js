@@ -108,7 +108,7 @@ const mantineTheme = createTheme({
           label: {
             textTransform: "none",
             fontSize: 16,
-            fontWeight: 500,
+            fontWeight: 400,
           },
         };
       },

@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import {
   MdOutlineSpaceDashboard,
+  MdOutlineSupervisorAccount,
   MdOutlineSettings,
   MdLogout,
 } from "react-icons/md";
@@ -18,6 +19,11 @@ const navList = [
     label: "Dashboard",
     path: "/",
     Icon: MdOutlineSpaceDashboard,
+  },
+  {
+    label: "User Management",
+    path: "/user-management",
+    Icon: MdOutlineSupervisorAccount,
   },
 ];
 
@@ -38,7 +44,9 @@ export default function SideBar() {
       <Flex direction="column" align="center" gap={8} pl="lg" pr="lg">
         {navList.map(({ label, path, Icon }) => (
           <NavLink
-            className={`${pathname === path ? "lilly-nav-link" : ""}`}
+            className={`lilly-nav-link ${
+              pathname === path ? "selected" : "unselected"
+            }`}
             key={path}
             href={path}
             label={label}
@@ -55,7 +63,9 @@ export default function SideBar() {
         p="lg"
       >
         <NavLink
-          className={`${pathname === "/settings" ? "lilly-nav-link" : ""}`}
+          className={`lilly-nav-link ${
+            pathname === "/settings" ? "selected" : "unselected"
+          }`}
           href="/settings"
           label="Settings"
           active={pathname === "/settings"}
@@ -63,7 +73,9 @@ export default function SideBar() {
           leftSection={<MdOutlineSettings size={17} />}
         />
         <NavLink
-          className={`${pathname === "/profile" ? "lilly-nav-link" : ""}`}
+          className={`lilly-nav-link ${
+            pathname === "/profile" ? "selected" : "unselected"
+          }`}
           href="/profile"
           label="Logged in as"
           description="John Doe"
