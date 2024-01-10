@@ -20,3 +20,4 @@ export { default as CountryStatuses } from "./country-statuses";
 export { default as YesNo } from "./yes-no";
 export { default as UserTypes } from "./user-types";
 export { default as UserStatuses } from "./user-statuses";
+export { default as PatientDisEnrollmentReasons } from "./patient-disenrollment-reasons";

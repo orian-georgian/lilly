@@ -1,5 +1,16 @@
 .lilly-topbar {
   .lilly-nav-link {
+    font-weight: 500;
+    font-size: 14px;
+    font-weight: 24px;
+  }
+
+  .lilly-nav-link-active {
     border-bottom: 3px solid var(--mantine-color-lilly-red-7);
+    color: var(--mantine-color-lilly-red-7);
+  }
+
+  .lilly-nav-link-inactive {
+    color: var(--mantine-color-primary-dark-9);
   }
 }

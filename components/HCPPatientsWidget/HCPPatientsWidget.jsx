@@ -49,6 +49,7 @@ import { PatientCDAIStep } from "../PatientCDAIStep";
 import { PatientDAPSAStep } from "../PatientDAPSAStep";
 import { PatientWellnessDataStep } from "../PatientWellnessDataStep";
 import { PatientSleepDisturbanceStep } from "../PatientSleepDisturbanceStep";
+import { useRouter } from "next/router";
 
 const initialNewVisitFormValues = {
   step1: {
@@ -163,6 +164,9 @@ export default function HCPPatientsWidget() {
     setSelectedPatientId,
     filterPatients,
   } = useHCPDashboard();
+
+  const { push } = useRouter();
+
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   const drawerAddVisitFormRef = useRef(null);
@@ -299,7 +303,7 @@ export default function HCPPatientsWidget() {
           </Badge>
         </Table.Td>
         <Table.Td w={40} align="center">
-          <UnstyledButton>
+          <UnstyledButton onClick={() => push("/edit-patient")}>
             <SlPencil color={`var(--mantine-color-lilly-red-7)`} />
           </UnstyledButton>
         </Table.Td>

@@ -32,3 +32,8 @@ export type User = {
   status: UserStatusesEnum;
   hasWarnings: boolean;
 };
+
+export type DrawerFormRef = {
+  open: () => void;
+  close: () => void;
+};

@@ -36,7 +36,7 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
 
   const form: any = useForm({
     initialValues: formValues,
-    //validate: formValidators,
+    validate: formValidators,
   });
 
   const handleCancel = () => {

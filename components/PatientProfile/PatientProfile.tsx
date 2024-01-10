@@ -6,8 +6,22 @@ import {
   MdOutlineFolderShared,
   MdOutlineSupervisorAccount,
 } from "react-icons/md";
+import { DrawerForm } from "../DrawerForm";
+import React, { useRef } from "react";
+import { DrawerFormRef } from "@lilly/types";
+import { IconType } from "react-icons";
 
-const SectionTitle = ({ title, icon: Icon }) => (
+interface SectionTitleType {
+  title: string;
+  icon: IconType;
+}
+
+interface SectionItemType {
+  label: string;
+  value: string;
+}
+
+const SectionTitle = ({ title, icon: Icon }: SectionTitleType) => (
   <Grid.Col span={12}>
     <Flex gap="xs" align="center">
       <Icon size={24} />
@@ -18,7 +32,7 @@ const SectionTitle = ({ title, icon: Icon }) => (
   </Grid.Col>
 );
 
-const SectionItem = ({ label, value }) => (
+const SectionItem = ({ label, value }: SectionItemType) => (
   <Grid.Col span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
     <Flex direction="column">
       <Text c="dimmed" size="xs">
@@ -32,6 +46,17 @@ const SectionItem = ({ label, value }) => (
 );
 
 export default function PatientProfile() {
+  const drawerRef = useRef<DrawerFormRef>(null);
+
+  const handleDrawer = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.stopPropagation();
+    drawerRef.current?.open();
+  };
+
+  const handleDrawerCancel = (): void => {
+    drawerRef.current?.close();
+  };
+
   return (
     <Flex className="w-100" direction="column" gap="lg">
       <Flex
@@ -48,7 +73,7 @@ export default function PatientProfile() {
           <Button variant="outline" color="lilly-red">
             Change Password
           </Button>
-          <Button variant="filled" color="lilly-red">
+          <Button variant="filled" color="lilly-red" onClick={handleDrawer}>
             Request to Cancel Authorization
           </Button>
         </Flex>
@@ -143,6 +168,27 @@ export default function PatientProfile() {
           value="Several times per week"
         />
       </Grid>
+      <DrawerForm ref={drawerRef} title="Request to Cancel Authorization">
+        <Flex direction="column" gap={10} px="xl" className="w-100">
+          <Divider w="100%" />
+          <Text>
+            Are you sure you want to cancel your authorization to use your data
+            in this study? This will also mean your profile becomes inactive.
+          </Text>
+          <Divider w="100%" my="sm" />
+          <Flex align="center" justify="space-between">
+            <Button variant="outline" onClick={handleDrawerCancel}>
+              Cancel
+            </Button>
+            <Button
+              variant="filled"
+              onClick={() => console.log("request to cancel")}
+            >
+              Confirm
+            </Button>
+          </Flex>
+        </Flex>
+      </DrawerForm>
     </Flex>
   );
 }

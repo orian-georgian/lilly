@@ -16,7 +16,7 @@ export default function Home() {
       {/* <CoreTeamDashboard /> */}
       <HCPDashboard />
       {/* <EditPatientData /> */}
-      <HCPDashboard />
+      {/* <HCPDashboard /> */}
     </Flex>
   );
 }
