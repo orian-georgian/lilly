@@ -56,7 +56,13 @@ export default function SideBar() {
       </Flex>
       <Flex direction="column" align="center" gap={8} pl="lg" pr="lg">
         {navList.map(({ label, path, Icon }) => (
-          <Link className="w-100" key={path} href={path} passHref>
+          <Link
+            className="w-100"
+            key={path}
+            href={path}
+            passHref
+            legacyBehavior
+          >
             <NavLink
               className={`lilly-nav-link ${
                 pathname === path ? "selected" : "unselected"
@@ -75,7 +81,13 @@ export default function SideBar() {
         gap={8}
         p="lg"
       >
-        <Link className="w-100" key="/settings" href="/settings" passHref>
+        <Link
+          className="w-100"
+          key="/settings"
+          href="/settings"
+          passHref
+          legacyBehavior
+        >
           <NavLink
             className={`lilly-nav-link ${
               pathname === "/settings" ? "selected" : "unselected"
@@ -86,7 +98,13 @@ export default function SideBar() {
             leftSection={<MdOutlineSettings size={17} />}
           />
         </Link>
-        <Link className="w-100" key="/profile" href="/profile" passHref>
+        <Link
+          className="w-100"
+          key="/profile"
+          href="/profile"
+          passHref
+          legacyBehavior
+        >
           <NavLink
             className={`lilly-nav-link ${
               pathname === "/profile" ? "selected" : "unselected"
