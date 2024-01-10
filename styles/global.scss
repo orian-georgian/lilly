@@ -1,4 +1,8 @@
 @import "@lilly/styles/SideBar.scss";
+@import "@lilly/styles/PatientProfile.scss";
+@import "@lilly/styles/SegmentedControl.scss";
+@import "@mantine/dates/styles.css";
+@import "@lilly/styles/TopBar.scss";
 
 @font-face {
   font-family: "Roboto";
@@ -66,4 +70,26 @@ img {
   .hidden-on-mobile {
     display: none;
   }
+}
+
+.modal-divider {
+  border: 0.82px solid var(--mantine-color-lilly-red-11);
+}
+
+.input-label-normal {
+  font-weight: 400;
+}
+
+.custom-error {
+  color: var(--mantine-color-error);
+  font-size: var(
+    --input-error-size,
+    calc(var(--mantine-font-size-sm) - 0.125rem * var(--mantine-scale))
+  );
+  word-wrap: break-word;
+  display: block;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
 }

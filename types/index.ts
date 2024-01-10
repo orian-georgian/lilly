@@ -10,6 +10,19 @@ export type MantineForm = {
   };
 };
 
+export type BtsDMARDUsed = {
+  key: string;
+  treatment: Array<string | number>;
+  start: Date;
+  end: Date;
+};
+
+export type Exercise = {
+  value: string;
+  label: string;
+  description: string;
+};
+
 export type User = {
   userId: string;
   email: string;
@@ -18,6 +31,11 @@ export type User = {
   endDate: string | Date;
   status: UserStatusesEnum;
   hasWarnings: boolean;
+};
+
+export type DrawerFormRef = {
+  open: () => void;
+  close: () => void;
 };
 
 export type Study = {

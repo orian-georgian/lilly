@@ -1,0 +1,28 @@
+.lilly-segmentedControl {
+  &.mantine-SegmentedControl-root {
+    border: 1px solid var(--mantine-color-lilly-red-7);
+    padding: 0;
+    --sc-color: var(--mantine-color-lilly-red-7);
+    background: white;
+  }
+
+  .mantine-SegmentedControl-indicator {
+    border-radius: 0;
+  }
+
+  .mantine-SegmentedControl-control {
+    .mantine-SegmentedControl-label {
+      color: var(--mantine-color-lilly-red-7);
+    }
+
+    .mantine-SegmentedControl-label[data-active="true"] {
+      color: white;
+    }
+
+    &:last-child {
+      &::before {
+        background-color: var(--mantine-color-lilly-red-7);
+      }
+    }
+  }
+}

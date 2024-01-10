@@ -7,18 +7,15 @@ import {
   ReactNode,
 } from "react";
 import { useDisclosure } from "@mantine/hooks";
+import { DrawerFormRef } from "@lilly/types";
 
 type Position = "left" | "right" | "bottom" | "top";
 
 interface DrawerFormProps {
   children: ReactNode;
   title: string;
-  position: Position;
-}
-
-interface DrawerFormRef {
-  open: () => void;
-  close: () => void;
+  position?: Position;
+  ref: Ref<DrawerFormRef>;
 }
 
 const DrawerForm: FunctionComponent<DrawerFormProps> = forwardRef(
