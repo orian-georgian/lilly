@@ -1,7 +1,7 @@
 import { UserTypesEnum } from "@lilly/constants/user-types";
 import { UserStatusesEnum } from "@lilly/constants/user-statuses";
 
-import { ReactNode } from "react";
+import { ReactNode, Ref } from "react";
 
 type Position = "left" | "right" | "bottom" | "top";
 
@@ -14,15 +14,29 @@ export type MantineForm = {
   };
 };
 
+export type DrawerFormRef = {
+  open: () => void;
+  close: () => void;
+};
+
 export type DrawerFormProps = {
   children: ReactNode;
   title: string;
   position?: Position;
+  ref: Ref<DrawerFormRef>;
 };
 
-export type DrawerFormRef = {
-  open: () => void;
-  close: () => void;
+export type BtsDMARDUsed = {
+  key: string;
+  treatment: Array<string | number>;
+  start: Date;
+  end: Date;
+};
+
+export type Exercise = {
+  value: string;
+  label: string;
+  description: string;
 };
 
 export type User = {

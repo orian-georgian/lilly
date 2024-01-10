@@ -1,0 +1,26 @@
+.lilly-patientProfile {
+  &__content-section {
+    border: 1px solid var(--mantine-color-lilly-red-10);
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  &__data-label {
+    color: var(--mantine-color-primary-dark-9);
+    opacity: 0.8;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  &__data-value {
+    color: var(--mantine-color-primary-dark-9);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  &__data-divider {
+    border: 1px solid var(--mantine-color-lilly-red-10);
+  }
+}
