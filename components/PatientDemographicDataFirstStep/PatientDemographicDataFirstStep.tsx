@@ -108,40 +108,49 @@ const PatientDemographicDataFirstStep: FunctionComponent<
           />
         </Grid.Col>
       </Grid>
-      <NumberInput
-        classNames={classNames}
-        label="Weight"
-        placeholder="weight"
-        withAsterisk
-        {...form.getInputProps("step2.weight")}
-        styles={{ section: { width: "auto", right: 0 } }}
-        rightSection={
+      <Grid align="flex-end">
+        <Grid.Col span={{ base: 9, md: 9, lg: 9 }}>
+          <NumberInput
+            classNames={classNames}
+            label="Weight"
+            placeholder="weight"
+            withAsterisk
+            {...form.getInputProps("step2.weight")}
+            rightSection={<Null />}
+          />
+        </Grid.Col>
+        <Grid.Col span={{ base: 3, md: 3, lg: 3 }}>
           <SegmentedControl
-            className="lilly-segmentedControl"
+            className="lilly-segmentedControl w-100"
             color={`var(--mantine-color-lilly-red-7)`}
             bg="white"
             data={Units.Weight}
             {...form.getInputProps("step2.weightUnit")}
           />
-        }
-      />
-      <NumberInput
-        classNames={classNames}
-        label="Height"
-        placeholder="height"
-        withAsterisk
-        {...form.getInputProps("step2.height")}
-        styles={{ section: { width: "auto", right: 0 } }}
-        rightSection={
+        </Grid.Col>
+      </Grid>
+      <Grid align="flex-end">
+        <Grid.Col span={{ base: 9, md: 9, lg: 9 }}>
+          <NumberInput
+            classNames={classNames}
+            label="Height"
+            placeholder="height"
+            withAsterisk
+            {...form.getInputProps("step2.height")}
+            styles={{ section: { width: "auto", right: 0 } }}
+            rightSection={<Null />}
+          />
+        </Grid.Col>
+        <Grid.Col span={{ base: 3, md: 3, lg: 3 }}>
           <SegmentedControl
-            className="lilly-segmentedControl"
+            className="lilly-segmentedControl w-100"
             color={`var(--mantine-color-lilly-red-7)`}
             bg="white"
             data={Units.Height}
             {...form.getInputProps("step2.heightUnit")}
           />
-        }
-      />
+        </Grid.Col>
+      </Grid>
       <Grid>
         <Grid.Col span={{ base: 12, md: 3, lg: 3 }}>
           <NumberInput

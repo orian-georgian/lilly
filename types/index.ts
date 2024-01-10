@@ -13,3 +13,9 @@ export type BtsDMARDUsed = {
   start: Date;
   end: Date;
 };
+
+export type Exercise = {
+  value: string;
+  label: string;
+  description: string;
+};

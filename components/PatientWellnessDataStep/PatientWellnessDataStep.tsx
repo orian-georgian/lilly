@@ -9,22 +9,16 @@ import {
 import { FunctionComponent } from "react";
 import { MdOutlineInfo } from "react-icons/md";
 import { UseFormReturnType } from "@mantine/form";
-import { DietaryIntakes, Exercises } from "@lilly/constants";
+import { DietaryIntakes, Exercises, YesNo } from "@lilly/constants";
+import { Exercise } from "@lilly/types/index";
 
 interface PatientWellnessDataStepProps {
   form: UseFormReturnType<any>;
 }
 
-interface Exercise {
-  value: string;
-  label: string;
-  description: string;
-}
-
-const YES_NO = [
-  { value: "Y", label: "Yes" },
-  { value: "N", label: "No" },
-];
+const classNames = {
+  label: "input-label-normal",
+};
 
 const PatientWellnessDataStep: FunctionComponent<
   PatientWellnessDataStepProps
@@ -47,7 +41,7 @@ const PatientWellnessDataStep: FunctionComponent<
                 label={description}
                 withArrow
                 position="top-start"
-                bg={`var(--mantine-color-lilly-red-10)`}
+                bg={`var(--mantine-color-primary-dark-1)`}
                 styles={{
                   tooltip: {
                     color: `var(--mantine-color-primary-dark-9)`,
@@ -67,7 +61,7 @@ const PatientWellnessDataStep: FunctionComponent<
               <SegmentedControl
                 className="lilly-segmentedControl"
                 {...form.getInputProps(`step8.${value}`)}
-                data={YES_NO}
+                data={YesNo.List}
               />
               {form.errors[`step8.${value}`] && (
                 <Text className="custom-error">
@@ -79,6 +73,7 @@ const PatientWellnessDataStep: FunctionComponent<
         ))}
       </Flex>
       <Select
+        classNames={classNames}
         clearable
         label="Dietary"
         placeholder="Select dietary intake"

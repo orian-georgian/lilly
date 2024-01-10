@@ -4,16 +4,18 @@ import {
   HCPDashboard,
   PatientProfile,
   CoreTeamDashboard,
+  EditPatientData,
 } from "@lilly/components";
 
 export default function Home() {
   return (
     <Flex>
       {/* <PatientDashboard /> */}
-      <HCPDashboard />
+      {/* <HCPDashboard /> */}
       {/* <PatientProfile /> */}
       {/* <CoreTeamDashboard /> */}
-      {/* <HCPDashboard /> */}
+      <HCPDashboard />
+      {/* <EditPatientData /> */}
     </Flex>
   );
 }

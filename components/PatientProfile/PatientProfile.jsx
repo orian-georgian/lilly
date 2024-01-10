@@ -79,7 +79,7 @@ export default function PatientProfile() {
         <SectionItem label="Smoking Status" value="Former Smoker" />
         <SectionItem label="Disease Diagnosis Date" value="23/11/2023" />
 
-        <Divider w="100%" my="xl" />
+        <Divider w="100%" my="lg" />
 
         <SectionTitle title="Study Data" icon={MdOutlineLocationOn} />
 
@@ -88,7 +88,7 @@ export default function PatientProfile() {
         <SectionItem label="Treatment Prescribes Date" value="23/11/2023" />
         <SectionItem label="Country/Region/Site" value="United Kingdom" />
 
-        <Divider w="100%" my="xl" />
+        <Divider w="100%" my="lg" />
 
         <SectionTitle title="Medication History" icon={MdInfoOutline} />
 
@@ -101,7 +101,7 @@ export default function PatientProfile() {
           value="methotrexate (Rheumatrex, Trexall, other)"
         />
 
-        <Divider w="100%" my="xl" />
+        <Divider w="100%" my="lg" />
 
         <SectionTitle
           title="Baseline Medication"
@@ -115,7 +115,7 @@ export default function PatientProfile() {
         <SectionItem label="csDMARD at baseline" value="answer" />
         <SectionItem label="Corticosteroid at baseline" value="Dexamethasone" />
 
-        <Divider w="100%" my="xl" />
+        <Divider w="100%" my="lg" />
 
         <SectionTitle title="Wellness Data" icon={MdOutlineSupervisorAccount} />
 

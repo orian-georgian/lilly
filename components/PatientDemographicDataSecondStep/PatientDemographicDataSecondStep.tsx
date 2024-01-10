@@ -4,12 +4,12 @@ import { DatePickerInput } from "@mantine/dates";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { UseFormReturnType } from "@mantine/form";
 import { calculateYearsFromNow } from "@lilly/utils";
-import { EducationStatuses, Genders, SmokingStatuses } from "@lilly/constants";
-
-export const YES_NO = [
-  { value: "Y", label: "Yes" },
-  { value: "N", label: "No" },
-];
+import {
+  EducationStatuses,
+  Genders,
+  SmokingStatuses,
+  YesNo,
+} from "@lilly/constants";
 
 interface PatientDemographicDataSecondStepProps {
   form: UseFormReturnType<any>;
@@ -54,7 +54,7 @@ const PatientDemographicDataSecondStep: FunctionComponent<
         clearable
         label="Primary Employment"
         placeholder="Are you employed at the moment"
-        data={YES_NO}
+        data={YesNo.List}
         withAsterisk
         {...form.getInputProps("step3.primaryEmployment")}
       />

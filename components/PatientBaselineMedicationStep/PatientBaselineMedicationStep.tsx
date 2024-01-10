@@ -96,9 +96,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 </ActionIcon>
               </Flex>
               <MultiSelect
-                classNames={{
-                  label: "input-label-normal",
-                }}
+                classNames={classNames}
                 clearable
                 withAsterisk
                 label="Treatment"
@@ -109,9 +107,7 @@ const PatientBaselineMedicationStep: FunctionComponent<
                 )}
               />
               <DatePickerInput
-                classNames={{
-                  label: "input-label-normal",
-                }}
+                classNames={classNames}
                 label="Start date"
                 placeholder="Select a date"
                 valueFormat="DD/MM/YYYY"
