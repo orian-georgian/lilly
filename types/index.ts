@@ -37,3 +37,17 @@ export type DrawerFormRef = {
   open: () => void;
   close: () => void;
 };
+
+export type Study = {
+  code: string;
+  title: string;
+  disease: string;
+  medicalLead: string;
+  numberOfLocations: number;
+  startDate: string | Date;
+  endDate: string | Date;
+  totalPatients: number;
+  papers: number;
+  hpcQuestionnaires: number;
+  patientQuestionnaires: number;
+};

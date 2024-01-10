@@ -30,3 +30,4 @@ export { UsersWidget } from "./UsersWidget";
 export { EditPatientHeader } from "./EditPatientHeader";
 export { PatientDisEnrolForm } from "./PatientDisEnrolForm";
 export { PatientCancelAuthorizationForm } from "./PatientCancelAuthorizationForm";
+export { StudiesManagementWidget } from "./StudiesManagementWidget";
