@@ -1,6 +1,10 @@
 import { UserTypesEnum } from "@lilly/constants/user-types";
 import { UserStatusesEnum } from "@lilly/constants/user-statuses";
 
+import { ReactNode } from "react";
+
+type Position = "left" | "right" | "bottom" | "top";
+
 export type MantineForm = {
   values: object;
   getInputProps: (path: string) => object;
@@ -8,6 +12,17 @@ export type MantineForm = {
     hasError: boolean;
     error: string;
   };
+};
+
+export type DrawerFormProps = {
+  children: ReactNode;
+  title: string;
+  position?: Position;
+};
+
+export type DrawerFormRef = {
+  open: () => void;
+  close: () => void;
 };
 
 export type User = {

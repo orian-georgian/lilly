@@ -2,7 +2,6 @@ import {
   Paper,
   Flex,
   Text,
-  Title,
   Button,
   Divider,
   ActionIcon,
@@ -10,12 +9,32 @@ import {
 } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, useRef, RefObject } from "react";
 import { SlPencil } from "react-icons/sl";
 import { AiOutlineDelete } from "react-icons/ai";
 import { PiExport } from "react-icons/pi";
 
 import { useStudies } from "@lilly/hooks";
+import { DrawerFormRef } from "@lilly/types";
+import { addStudyValidators } from "@lilly/utils/form-validators";
+import {
+  DrawerForm,
+  MultiStepsForm,
+  AddStudyDataStep,
+} from "@lilly/components";
+
+const initialNewStudytFormValues = {
+  step1: {
+    code: "",
+    title: "",
+    description: "",
+    disease: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    patientsTotal: "",
+    papers: "",
+  },
+};
 
 interface StudiesManagementWidgetProps {}
 
@@ -23,6 +42,18 @@ const StudiesManagementWidget: FunctionComponent<
   StudiesManagementWidgetProps
 > = () => {
   const { studies, isLoading } = useStudies();
+  const drawerFormRef: RefObject<DrawerFormRef> = useRef<DrawerFormRef>(null);
+  const newStudyFormSteps: FunctionComponent<any>[] = [AddStudyDataStep];
+
+  const handleAddNewStudyCancel = () => {
+    drawerFormRef?.current?.close();
+  };
+
+  const handleSaveStudy = () => {};
+
+  const handleOpenAddStudy = () => {
+    drawerFormRef?.current?.open();
+  };
 
   return (
     <Paper shadow="lg" p="lg" radius="lg" pos="relative" withBorder>
@@ -36,7 +67,11 @@ const StudiesManagementWidget: FunctionComponent<
         <Text fw={500}>{`${studies.length} ${
           studies.length === 1 ? "Study" : "Studies"
         }`}</Text>
-        <Button className="m-l-auto" variant="outline">
+        <Button
+          className="m-l-auto"
+          variant="outline"
+          onClick={handleOpenAddStudy}
+        >
           Add Study
         </Button>
       </Flex>
@@ -133,6 +168,18 @@ const StudiesManagementWidget: FunctionComponent<
           },
         ]}
       />
+      <DrawerForm ref={drawerFormRef} title="Add a study">
+        <MultiStepsForm
+          totalSteps={newStudyFormSteps.length}
+          startFrom={1}
+          submitText="Add study"
+          formValues={initialNewStudytFormValues}
+          formValidators={addStudyValidators}
+          steps={newStudyFormSteps}
+          onCancel={handleAddNewStudyCancel}
+          onSubmit={handleSaveStudy}
+        />
+      </DrawerForm>
     </Paper>
   );
 };
