@@ -1,8 +1,8 @@
 export enum UserTypesEnum {
-  HCP = "hcp",
-  Patient = "patient",
-  LillyCore = "lilly-core",
-  LillyAdmin = "lilly-admin",
+  HCP = "HCP",
+  Patient = "PATIENT",
+  LillyCore = "LILLY_CORE",
+  LillyAdmin = "PLATFORM_ADMIN",
 }
 
 export const UserTypesList = [
