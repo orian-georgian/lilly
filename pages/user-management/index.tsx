@@ -1,7 +1,7 @@
 import { Grid } from "@mantine/core";
 import { FunctionComponent } from "react";
 
-import { WarningsWidget, UsersWidget } from "@lilly/components";
+import { WarningsWidget, UsersManagementWidget } from "@lilly/components";
 
 const warnings = [
   "There are 2 patients that requested for their data to be deleted.",
@@ -15,7 +15,7 @@ const UserManagement: FunctionComponent = () => {
         <WarningsWidget messages={warnings} />
       </Grid.Col>
       <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-        <UsersWidget />
+        <UsersManagementWidget />
       </Grid.Col>
     </Grid>
   );

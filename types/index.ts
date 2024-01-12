@@ -56,10 +56,11 @@ export type User = {
   userId: string;
   email: string;
   userType: UserTypesEnum;
-  startDate: string | Date;
-  endDate: string | Date;
+  startDate: string;
+  endDate: string;
   status: UserStatusesEnum;
   hasWarnings: boolean;
+  studies?: Array<any>;
 };
 
 export type Study = {

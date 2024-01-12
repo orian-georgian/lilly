@@ -13,7 +13,13 @@ import {
 } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
 
-import { FunctionComponent, ReactNode, ChangeEvent } from "react";
+import {
+  FunctionComponent,
+  ReactNode,
+  ChangeEvent,
+  useRef,
+  RefObject,
+} from "react";
 import { IoIosSearch } from "react-icons/io";
 import { SlPencil } from "react-icons/sl";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -24,18 +30,43 @@ import { MdInfo } from "react-icons/md";
 
 import { useUsers } from "@lilly/hooks";
 import { getColorByUserStatus, debounce } from "@lilly/utils";
+import { DrawerFormRef, User } from "@lilly/types";
 import {
   UserStatusesList,
   UserStatusesEnum,
 } from "@lilly/constants/user-statuses";
 import { UserTypesList } from "@lilly/constants/user-types";
+import { DrawerForm, MultiStepsForm, AddUserDataStep } from "@lilly/components";
+import { addUserValidators } from "@lilly/utils/form-validators";
 
-import { User } from "@lilly/types";
+const initialNewUsertFormValues = {
+  step1: {
+    userType: null,
+    userId: "",
+    email: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    status: null,
+    hasWarnings: false,
+  },
+  step2: {
+    studies: [
+      {
+        study: null,
+        location: null,
+        patientsTotal: "",
+        enrollmentPeriod: "",
+      },
+    ],
+  },
+};
 
 interface UsersWidgetProps {}
 
 const UsersWidget: FunctionComponent<UsersWidgetProps> = () => {
   const { users, isLoading, filterByType, filterUsers } = useUsers();
+  const drawerFormRef: RefObject<DrawerFormRef> = useRef<DrawerFormRef>(null);
+  const newUserFormSteps: FunctionComponent<any>[] = [AddUserDataStep];
 
   const handleTypeChange = (value: string | null): void => {
     if (filterByType) {
@@ -49,6 +80,14 @@ const UsersWidget: FunctionComponent<UsersWidgetProps> = () => {
     if (filterUsers) {
       filterUsers(value);
     }
+  };
+
+  const handleSaveUser = () => {};
+
+  const handleAddNewUserCancel = () => {};
+
+  const handleOpenAddUser = () => {
+    drawerFormRef?.current?.open();
   };
 
   const debouncedHandleFilterUsers = debounce(handleFilterUsers, 300);
@@ -143,7 +182,11 @@ const UsersWidget: FunctionComponent<UsersWidgetProps> = () => {
           span="content"
           order={{ base: 4, xs: 2, sm: 2, md: 4, lg: 4 }}
         >
-          <Button w={{ xs: "100%" }} variant="outline">
+          <Button
+            w={{ xs: "100%" }}
+            variant="outline"
+            onClick={handleOpenAddUser}
+          >
             Add User
           </Button>
         </Grid.Col>
@@ -153,6 +196,7 @@ const UsersWidget: FunctionComponent<UsersWidgetProps> = () => {
       <DataTable
         records={users}
         minHeight={200}
+        idAccessor="userId"
         columns={[
           {
             accessor: "userId",
@@ -226,6 +270,18 @@ const UsersWidget: FunctionComponent<UsersWidgetProps> = () => {
           },
         ]}
       />
+      <DrawerForm ref={drawerFormRef} loading={isLoading} title={`Add a user`}>
+        <MultiStepsForm
+          totalSteps={newUserFormSteps.length}
+          startFrom={1}
+          submitText={`Add user`}
+          formValues={initialNewUsertFormValues}
+          formValidators={addUserValidators}
+          steps={newUserFormSteps}
+          onCancel={handleAddNewUserCancel}
+          onSubmit={handleSaveUser}
+        />
+      </DrawerForm>
     </Paper>
   );
 };
