@@ -1,22 +1,25 @@
-import { FunctionComponent, FormEvent } from "react";
+import { FunctionComponent } from "react";
 import { Flex, Progress, Button, Divider } from "@mantine/core";
 import { usePagination } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { MantineForm } from "types";
-import { validateStepFields } from "@lilly/utils/form-validators";
 
 interface MultiStepsFormProps {
+  isEdit?: boolean;
   totalSteps: number;
   startFrom: number;
   submitText: string;
   formValues: object;
   formValidators: object;
   steps: FunctionComponent[];
-  onCancel: () => void;
-  onSubmit: (values: object) => void;
+  editedItem?: object;
+  onCancel: (isEdit: boolean) => void;
+  onSubmit: (values: object, isEdit: boolean) => void;
 }
 
 const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
+  isEdit,
+  editedItem,
   startFrom,
   totalSteps,
   formValues,
@@ -35,13 +38,13 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
     steps[active - 1];
 
   const form: any = useForm({
-    initialValues: formValues,
+    initialValues: isEdit ? editedItem : formValues,
     validate: formValidators,
   });
 
   const handleCancel = () => {
     if (onCancel) {
-      onCancel();
+      onCancel(isEdit || false);
     }
   };
 
@@ -60,7 +63,7 @@ const MultiStepsForm: FunctionComponent<MultiStepsFormProps> = ({
 
   const handleSubmit = (data: object) => {
     if (onSubmit) {
-      onSubmit(data);
+      onSubmit(data, isEdit || false);
     }
   };
 

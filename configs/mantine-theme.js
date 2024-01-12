@@ -10,6 +10,7 @@ import {
   Drawer,
   List,
   Text,
+  LoadingOverlay,
 } from "@mantine/core";
 
 const lillyRed = [
@@ -82,6 +83,16 @@ const mantineTheme = createTheme({
         title: {
           fontSize: 32,
           fontWeight: 700,
+        },
+        root: {
+          zIndex: 200,
+        },
+      },
+    }),
+    LoadingOverlay: LoadingOverlay.extend({
+      styles: {
+        root: {
+          zIndex: 100,
         },
       },
     }),

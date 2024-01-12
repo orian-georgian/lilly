@@ -19,5 +19,7 @@ export { default as Corticosteroids } from "./corticosteroids";
 export { default as CountryStatuses } from "./country-statuses";
 export { default as YesNo } from "./yes-no";
 export { default as UserTypes } from "./user-types";
+export { default as RecurrencePatterns } from "./recurrence-patterns";
+export { default as QuestionnaireFrequencies } from "./questionnaire-frequencies";
 export { default as UserStatuses } from "./user-statuses";
 export { default as PatientDisEnrollmentReasons } from "./patient-disenrollment-reasons";

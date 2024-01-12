@@ -32,3 +32,7 @@ export { PatientDisEnrolForm } from "./PatientDisEnrolForm";
 export { PatientCancelAuthorizationForm } from "./PatientCancelAuthorizationForm";
 export { StudiesManagementWidget } from "./StudiesManagementWidget";
 export { AddStudyDataStep } from "./AddStudyDataStep";
+export { AddStudyKeyUsersStep } from "./AddStudyKeyUsersStep";
+export { AddStudyLocationStep } from "./AddStudyLocationStep";
+export { AddStudyHCPQuestionnairesStep } from "./AddStudyHCPQuestionnairesStep";
+export { AddStudyPatientQuestionnairesStep } from "./AddStudyPatientQuestionnairesStep";

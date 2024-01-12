@@ -1,12 +1,14 @@
 import { FunctionComponent } from "react";
 import { DatePickerInput } from "@mantine/dates";
 import { Flex, Select, Text, TextInput, Textarea } from "@mantine/core";
-import { MantineForm } from "types";
+import { UseFormReturnType } from "@mantine/form";
 
 import { MdOutlineCalendarMonth } from "react-icons/md";
 
+import { Diseases } from "@lilly/constants";
+
 interface AddStudyDataStepProps {
-  form: MantineForm;
+  form: UseFormReturnType<any>;
 }
 
 const labelStyles = {
@@ -14,8 +16,6 @@ const labelStyles = {
     fontWeight: 400,
   },
 };
-
-const diseases = ["exSpA", "RA", "PsA", "LSD"];
 
 const AddStudyDataStep: FunctionComponent<AddStudyDataStepProps> = ({
   form,
@@ -48,7 +48,7 @@ const AddStudyDataStep: FunctionComponent<AddStudyDataStepProps> = ({
         label="Disease"
         withAsterisk
         placeholder="Please select a disease"
-        data={diseases}
+        data={Diseases.List}
         {...form.getInputProps("step1.disease")}
       />
       <DatePickerInput
@@ -56,6 +56,7 @@ const AddStudyDataStep: FunctionComponent<AddStudyDataStepProps> = ({
         leftSection={<MdOutlineCalendarMonth />}
         leftSectionPointerEvents="none"
         withAsterisk
+        valueFormat="DD/MM/YYYY"
         label="Start Date"
         placeholder="Select a date"
         {...form.getInputProps("step1.startDate")}
@@ -65,6 +66,7 @@ const AddStudyDataStep: FunctionComponent<AddStudyDataStepProps> = ({
         leftSection={<MdOutlineCalendarMonth />}
         leftSectionPointerEvents="none"
         withAsterisk
+        valueFormat="DD/MM/YYYY"
         label="End Date"
         placeholder="Select a date"
         {...form.getInputProps("step1.endDate")}

@@ -1,5 +1,7 @@
 import { UserTypesEnum } from "@lilly/constants/user-types";
 import { UserStatusesEnum } from "@lilly/constants/user-statuses";
+import { RecurrencePattern } from "@lilly/constants/recurrence-patterns";
+import { QuestionnaireFrequency } from "@lilly/constants/questionnaire-frequencies";
 
 import { ReactNode, Ref } from "react";
 
@@ -24,6 +26,7 @@ export type DrawerFormProps = {
   title: string;
   position?: Position;
   ref: Ref<DrawerFormRef>;
+  loading?: boolean;
 };
 
 export type BtsDMARDUsed = {
@@ -39,6 +42,16 @@ export type Exercise = {
   description: string;
 };
 
+export type StudyQuestionnaireForm = {
+  //To be change to the actual questionnaire type when available
+  questionnaire: any;
+  recurrencePattern: RecurrencePattern;
+  frequency: QuestionnaireFrequency;
+  occurrencesAmount: string | null;
+  numberOfDays: string | null;
+  mandatory?: string | null;
+};
+
 export type User = {
   userId: string;
   email: string;
@@ -50,15 +63,20 @@ export type User = {
 };
 
 export type Study = {
+  id: string;
   code: string;
   title: string;
+  description: string;
   disease: string;
+  startDate: string;
+  endDate: string;
+  patientsTotal: string;
+  papers: string;
+  projectManager: string;
+  valueLead: string;
   medicalLead: string;
-  numberOfLocations: number;
-  startDate: string | Date;
-  endDate: string | Date;
-  totalPatients: number;
-  papers: number;
-  hpcQuestionnaires: number;
-  patientQuestionnaires: number;
+  dataManager: string;
+  locations: Array<any>;
+  hcpQuestionnaires: Array<StudyQuestionnaireForm>;
+  patientQuestionnaires: Array<StudyQuestionnaireForm>;
 };
